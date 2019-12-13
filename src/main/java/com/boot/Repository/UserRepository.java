@@ -1,4 +1,4 @@
-package com.boot.service;
+package com.boot.Repository;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 

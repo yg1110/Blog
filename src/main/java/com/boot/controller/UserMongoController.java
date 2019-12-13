@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.boot.Repository.UserRepository;
 import com.boot.dto.Users;
-import com.boot.service.UserRepository;
 
 @RestController
 public class UserMongoController {
