@@ -1,6 +1,11 @@
 package com.boot.dto;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+@RedisHash("User")
 public class User {
+	@Id
 	private String email;
 	private String pwd;
 	private int auth;

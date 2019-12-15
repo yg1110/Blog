@@ -179,10 +179,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		                <li><a href="#" class="view">View all messages</a></li>
 		              </ul>
 		            </li>
-			        <i class="fa fa-sign-in nav_icon"></i>
+			        <a href="/logout"><i class="fa fa-sign-in nav_icon"></i></a>
 		            
 					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">${id}<i class="caret"></i></span><img src="/main/images/wo.jpg"></a>
+		              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">${name}<i class="caret"></i></span><img src="/main/images/wo.jpg"></a>
 		              <ul class="dropdown-menu " role="menu">
 		                <li><a href="profile.html"><i class="fa fa-user"></i>Edit Profile</a></li>
 		                <li><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox</a></li>

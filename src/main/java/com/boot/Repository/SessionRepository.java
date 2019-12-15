@@ -3,9 +3,9 @@ package com.boot.Repository;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.repository.CrudRepository;
 
-import com.boot.dto.Session;
+import com.boot.dto.User;
 
-@RedisHash("session")
-public interface SessionRepository extends CrudRepository<Session, String> {
+@RedisHash("User")
+public interface SessionRepository extends CrudRepository<User, String> {
 	
 }
