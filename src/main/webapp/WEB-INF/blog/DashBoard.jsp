@@ -9,18 +9,18 @@
 <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="/main/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
 <!-- Custom Theme files -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
-<link href="css/font-awesome.css" rel="stylesheet"> 
-<script src="js/jquery.min.js"> </script>
+<link href="/main/css/style.css" rel='stylesheet' type='text/css' />
+<link href="/main/css/font-awesome.css" rel="stylesheet"> 
+<script src="/main/js/jquery.min.js"> </script>
 <!-- Mainly scripts -->
-<script src="js/jquery.metisMenu.js"></script>
-<script src="js/jquery.slimscroll.min.js"></script>
+<script src="/main/js/jquery.metisMenu.js"></script>
+<script src="/main/js/jquery.slimscroll.min.js"></script>
 <!-- Custom and plugin javascript -->
-<link href="css/custom.css" rel="stylesheet">
-<script src="js/custom.js"></script>
-<script src="js/screenfull.js"></script>
+<link href="/main/css/custom.css" rel="stylesheet">
+<script src="/main/js/custom.js"></script>
+<script src="/main/js/screenfull.js"></script>
 		<script>
 		$(function () {
 			$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!----->
 
 <!--pie-chart--->
-<script src="js/pie-chart.js" type="text/javascript"></script>
+<script src="/main/js/pie-chart.js" type="text/javascript"></script>
  <script type="text/javascript">
 
         $(document).ready(function () {
@@ -82,7 +82,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
     </script>
 <!--skycons-icons-->
-<script src="js/skycons.js"></script>
+<script src="/main/js/skycons.js"></script>
 <!--//skycons-icons-->
 </head>
 <body>
@@ -117,9 +117,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		   <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="drop-men" >
 		        <ul class=" nav_1">
-		           
 		    		<li class="dropdown at-drop">
-		              <a href="#" class="dropdown-toggle dropdown-at " data-toggle="dropdown"><i class="fa fa-globe"></i> <span class="number">5</span></a>
+		              <a href="#" class="dropdown-toggle dropdown-at " data-toggle="dropdown"><i class="fa fa-globe"></i><span class="number">5</span></a>
 		              <ul class="dropdown-menu menu1 " role="menu">
 		                <li><a href="#">
 		               
@@ -180,8 +179,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		                <li><a href="#" class="view">View all messages</a></li>
 		              </ul>
 		            </li>
+			        <i class="fa fa-sign-in nav_icon"></i>
+		            
 					<li class="dropdown">
-		              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Rackham<i class="caret"></i></span><img src="images/wo.jpg"></a>
+		              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">${id}<i class="caret"></i></span><img src="/main/images/wo.jpg"></a>
 		              <ul class="dropdown-menu " role="menu">
 		                <li><a href="profile.html"><i class="fa fa-user"></i>Edit Profile</a></li>
 		                <li><a href="inbox.html"><i class="fa fa-envelope"></i>Inbox</a></li>
@@ -315,9 +316,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					</div>
 				</div>
 				<!--graph-->
-		<link rel="stylesheet" href="css/graph.css">
+		<link rel="stylesheet" href="/main/css/graph.css">
 		<!--//graph-->
-							<script src="js/jquery.flot.js"></script>
+							<script src="/main/js/jquery.flot.js"></script>
 									<script>
 									$(document).ready(function () {
 									
@@ -450,11 +451,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<div class="col-md-5">
 					 <div class="cal1 cal_2"><div class="clndr"><div class="clndr-controls"><div class="clndr-control-button"><p class="clndr-previous-button">previous</p></div><div class="month">July 2015</div><div class="clndr-control-button rightalign"><p class="clndr-next-button">next</p></div></div><table class="clndr-table" border="0" cellspacing="0" cellpadding="0"><thead><tr class="header-days"><td class="header-day">S</td><td class="header-day">M</td><td class="header-day">T</td><td class="header-day">W</td><td class="header-day">T</td><td class="header-day">F</td><td class="header-day">S</td></tr></thead><tbody><tr><td class="day adjacent-month last-month calendar-day-2015-06-28"><div class="day-contents">28</div></td><td class="day adjacent-month last-month calendar-day-2015-06-29"><div class="day-contents">29</div></td><td class="day adjacent-month last-month calendar-day-2015-06-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-01"><div class="day-contents">1</div></td><td class="day calendar-day-2015-07-02"><div class="day-contents">2</div></td><td class="day calendar-day-2015-07-03"><div class="day-contents">3</div></td><td class="day calendar-day-2015-07-04"><div class="day-contents">4</div></td></tr><tr><td class="day calendar-day-2015-07-05"><div class="day-contents">5</div></td><td class="day calendar-day-2015-07-06"><div class="day-contents">6</div></td><td class="day calendar-day-2015-07-07"><div class="day-contents">7</div></td><td class="day calendar-day-2015-07-08"><div class="day-contents">8</div></td><td class="day calendar-day-2015-07-09"><div class="day-contents">9</div></td><td class="day calendar-day-2015-07-10"><div class="day-contents">10</div></td><td class="day calendar-day-2015-07-11"><div class="day-contents">11</div></td></tr><tr><td class="day calendar-day-2015-07-12"><div class="day-contents">12</div></td><td class="day calendar-day-2015-07-13"><div class="day-contents">13</div></td><td class="day calendar-day-2015-07-14"><div class="day-contents">14</div></td><td class="day calendar-day-2015-07-15"><div class="day-contents">15</div></td><td class="day calendar-day-2015-07-16"><div class="day-contents">16</div></td><td class="day calendar-day-2015-07-17"><div class="day-contents">17</div></td><td class="day calendar-day-2015-07-18"><div class="day-contents">18</div></td></tr><tr><td class="day calendar-day-2015-07-19"><div class="day-contents">19</div></td><td class="day calendar-day-2015-07-20"><div class="day-contents">20</div></td><td class="day calendar-day-2015-07-21"><div class="day-contents">21</div></td><td class="day calendar-day-2015-07-22"><div class="day-contents">22</div></td><td class="day calendar-day-2015-07-23"><div class="day-contents">23</div></td><td class="day calendar-day-2015-07-24"><div class="day-contents">24</div></td><td class="day calendar-day-2015-07-25"><div class="day-contents">25</div></td></tr><tr><td class="day calendar-day-2015-07-26"><div class="day-contents">26</div></td><td class="day calendar-day-2015-07-27"><div class="day-contents">27</div></td><td class="day calendar-day-2015-07-28"><div class="day-contents">28</div></td><td class="day calendar-day-2015-07-29"><div class="day-contents">29</div></td><td class="day calendar-day-2015-07-30"><div class="day-contents">30</div></td><td class="day calendar-day-2015-07-31"><div class="day-contents">31</div></td><td class="day adjacent-month next-month calendar-day-2015-08-01"><div class="day-contents">1</div></td></tr></tbody></table></div></div>
 			  <!----Calender -------->
-			<link rel="stylesheet" href="css/clndr.css" type="text/css" />
-			<script src="js/underscore-min.js" type="text/javascript"></script>
-			<script src= "js/moment-2.2.1.js" type="text/javascript"></script>
-			<script src="js/clndr.js" type="text/javascript"></script>
-			<script src="js/site.js" type="text/javascript"></script>
+			<link rel="stylesheet" href="/main/css/clndr.css" type="text/css" />
+			<script src="/main/js/underscore-min.js" type="text/javascript"></script>
+			<script src= "/main/js/moment-2.2.1.js" type="text/javascript"></script>
+			<script src="/main/js/clndr.js" type="text/javascript"></script>
+			<script src="/main/js/site.js" type="text/javascript"></script>
 			<!----End Calender -------->
 			</div>
 			<div class="col-md-7 mid-content-top">
@@ -463,33 +464,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<!-- start content_slider -->
 		<div id="owl-demo" class="owl-carousel text-center">
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na.jpg" alt="name">
 			</div>
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na1.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na1.jpg" alt="name">
 			</div>
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na2.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na2.jpg" alt="name">
 			</div>
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na.jpg" alt="name">
 			</div>
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na1.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na1.jpg" alt="name">
 			</div>
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na2.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na2.jpg" alt="name">
 			</div>
 			<div class="item">
-				<img class="lazyOwl img-responsive" data-src="images/na.jpg" alt="name">
+				<img class="lazyOwl img-responsive" data-src="/main/images/na.jpg" alt="name">
 			</div>
 			
 		</div>
 		</div>
 		<!--//sreen-gallery-cursual---->
 		<!-- requried-jsfiles-for owl -->
-		<link href="css/owl.carousel.css" rel="stylesheet">
-		<script src="js/owl.carousel.js"></script>
+		<link href="/main/css/owl.carousel.css" rel="stylesheet">
+		<script src="/main/js/owl.carousel.js"></script>
 			<script>
 				$(document).ready(function() {
 					$("#owl-demo").owlCarousel({
@@ -745,10 +746,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
      </div>
 <!---->
 <!--scrolling js-->
-	<script src="js/jquery.nicescroll.js"></script>
-	<script src="js/scripts.js"></script>
+	<script src="/main/js/jquery.nicescroll.js"></script>
+	<script src="/main/js/scripts.js"></script>
 	<!--//scrolling js-->
-	<script src="js/bootstrap.min.js"> </script>
+	<script src="/main/js/bootstrap.min.js"> </script>
 </body>
 </html>
 

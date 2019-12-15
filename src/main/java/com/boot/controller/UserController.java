@@ -1,5 +1,7 @@
 package com.boot.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,7 @@ public class UserController {
 
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String welcome() {
-		return "index";
+		return "login/index";
 	}
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
@@ -26,26 +28,29 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Model model, User user) {
+	public String login(Model model, User user, HttpSession session) {
 		System.out.println("==============login==============");
-		System.out.println("들어온 값 : " + user);
+		
 		User myinfo = service.findUser(user.getEmail());
-		if(myinfo == null || !(myinfo.getPwd().equals(user.getPwd()))) {		
-			return "index";
+		System.out.println(myinfo);
+		if(myinfo == null || !(myinfo.getPwd().equals(user.getPwd()))) { //로그인실패
+			return "login/index";
 		}
 		else {
-			if(myinfo.getEmail().equals("aaa")) {
-				return "DashBoard";
+			if(myinfo.getAuth()==1) { //운영자 페이지
+				session.setAttribute("login", myinfo.getAuth());
+				return "blog/DashBoard";
 			}
-			else {				
-				return "main";
+			else { //유저페이지
+				session.setAttribute("login", myinfo.getAuth());
+				return "blog/index";
 			}
 		}
 	}
 	
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup() {
-		return "signup";
+		return "login/signup";
 	}
 	
 	@RequestMapping(value="/regi", method=RequestMethod.POST)
