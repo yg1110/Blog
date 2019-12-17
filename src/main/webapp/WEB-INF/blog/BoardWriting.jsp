@@ -18,7 +18,7 @@
 	rel="stylesheet">
 <link
 	href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap"
-	rel="stylesheet">
+ 	rel="stylesheet">
 
 <link rel="stylesheet" href="/blog/css/open-iconic-bootstrap.min.css">
 <link rel="stylesheet" href="/blog/css/animate.css">
@@ -38,6 +38,7 @@
 <link rel="stylesheet" href="/blog/css/flaticon.css">
 <link rel="stylesheet" href="/blog/css/icomoon.css">
 <link rel="stylesheet" href="/blog/css/style.css">
+
 </head>
 <body>
 
@@ -67,71 +68,46 @@
 				</p>
 			</div>
 		</aside>
-		<!-- END COLORLIB-ASIDE -->
+
 		<div id="colorlib-main">
 			<section class="ftco-section ftco-no-pt ftco-no-pb">
 				<div class="container">
 					<div class="row d-flex">
 						<div class="col-xl-8 py-5 px-md-5">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="dropdown dropup">
-											<button class="btn btn-primary dropdown-toggle" type="button"
-												id="dropdownMenuButton" data-toggle="dropdown">
-												Action</button>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-												<a class="dropdown-item" href="/BoardWriting">글쓰기</a>
-												<a class="dropdown-item" href="#">관리 / 통계</a>
-											</div>
-										</div>
+							<div class="comment-form-wrap pt-5">
+								<h3 class="mb-5">BoardWriting</h3>
+								<form action="#" class="p-3 p-md-5 bg-light">
+									<div class="form-group">
+										<label for="name">제목 *</label> <input type="text"
+											class="form-control" id="name">
 									</div>
-								</div>
-							</div>
-							<div class="row pt-md-4">
-								<c:forEach var="b" items="${board}">
-									<div class="col-md-12">
-										<div class="blog-entry ftco-animate d-md-flex">
-											<a href="/single/${b.id}" class="img img-2"
-												style="background-image: url(${b.image});"></a>
-											<div class="text text-2 pl-md-4">
-												<h3 class="mb-2">
-													<a href="/single/${b.id}">${b.title}</a>
-												</h3>
-												<div class="meta-wrap">
-													<p class="meta">
-														<span><a><i class="icon-calendar mr-2"></i>${b.date}</a></span>
-														<span><i class="icon-folder-o mr-2"></i>${b.category}</span>
-														<span><i class="icon-comment2 mr-2"></i>${b.comment}
-															Comment</span>
-													</p>
-												</div>
-												<p class="mb-4">${b.description}</p>
-												<p>
-													<a href="/single/${b.id}" class="btn-custom">Read More
-														<span class="ion-ios-arrow-forward"></span>
-													</a>
-												</p>
-											</div>
-										</div>
+									<div class="form-group">
+										<label for="email">카테고리 *</label><br>
+										<select>
+											<option value="">선택하세요</option>									
+											<option value="spring">spring</option>
+											<option value="mongodb">mongodb</option>											
+										</select>
 									</div>
-								</c:forEach>
-							</div>
-							<!-- END-->
-							<div class="row">
-								<div class="col">
-									<div class="block-27">
-										<ul>
-											<li><a href="#">&lt;</a></li>
-											<li class="active"><span>1</span></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#">5</a></li>
-											<li><a href="#">&gt;</a></li>
-										</ul>
+									<div class="form-group">
+										<label for="website">요약</label> <input type="url"
+											class="form-control" id="website">
 									</div>
-								</div>
+									<div class="form-group">
+										<label for="website">이미지</label>
+										<input type="file" class="form-control-file" id="exampleInputFile" />
+									</div>
+									<div class="form-group">
+										<label for="message">내용</label>
+										<textarea name="" id="message" cols="30" rows="10"
+											class="form-control"></textarea>
+									</div>
+									<div class="form-group">
+										<input type="submit" value="Post Comment"
+											class="btn py-3 px-4 btn-primary">
+									</div>
+
+								</form>
 							</div>
 						</div>
 						<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">

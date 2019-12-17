@@ -40,7 +40,6 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 </head>
 <body>
-
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
@@ -49,6 +48,7 @@
 					<li><a href="/">Home</a></li>
 					<li class="colorlib-active"><a href="/findAllBoard">Blog</a></li>
 				</ul>
+
 			</nav>
 
 			<div class="colorlib-footer">
@@ -72,69 +72,132 @@
 			<section class="ftco-section ftco-no-pt ftco-no-pb">
 				<div class="container">
 					<div class="row d-flex">
-						<div class="col-xl-8 py-5 px-md-5">
-							<div class="container-fluid">
-								<div class="row">
-									<div class="col-md-12">
-										<div class="dropdown dropup">
-											<button class="btn btn-primary dropdown-toggle" type="button"
-												id="dropdownMenuButton" data-toggle="dropdown">
-												Action</button>
-											<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-												<a class="dropdown-item" href="/BoardWriting">글쓰기</a>
-												<a class="dropdown-item" href="#">관리 / 통계</a>
-											</div>
-										</div>
+						<div class="col-lg-8 px-md-5 py-5">
+							<div class="row pt-md-4">
+								<h1 class="mb-3">${board.title}</h1>
+								<p>${board.content}</p>
+								<p>
+									<img src="${board.image}" alt="" class="img-fluid">
+								</p>
+								<p style="color: rgb(255, 255, 255, 0);">${board.content}</p>
+
+								<div class="tag-widget post-tag-container mb-5 mt-5">
+									<div class="tagcloud">
+										<a href="#" class="tag-cloud-link">Life</a> <a href="#"
+											class="tag-cloud-link">Sport</a> <a href="#"
+											class="tag-cloud-link">Tech</a> <a href="#"
+											class="tag-cloud-link">Travel</a>
 									</div>
 								</div>
-							</div>
-							<div class="row pt-md-4">
-								<c:forEach var="b" items="${board}">
-									<div class="col-md-12">
-										<div class="blog-entry ftco-animate d-md-flex">
-											<a href="/single/${b.id}" class="img img-2"
-												style="background-image: url(${b.image});"></a>
-											<div class="text text-2 pl-md-4">
-												<h3 class="mb-2">
-													<a href="/single/${b.id}">${b.title}</a>
-												</h3>
-												<div class="meta-wrap">
-													<p class="meta">
-														<span><a><i class="icon-calendar mr-2"></i>${b.date}</a></span>
-														<span><i class="icon-folder-o mr-2"></i>${b.category}</span>
-														<span><i class="icon-comment2 mr-2"></i>${b.comment}
-															Comment</span>
+
+								<div class="pt-5 mt-5">
+									<h3 class="mb-5 font-weight-bold">${board.comment}
+										Comments</h3>
+										<c:forEach var="c" items="${comment}">
+									<ul class="comment-list">
+											<li class="comment">
+												<div class="vcard bio">
+													<img src="${c.image}" alt="Image placeholder">
+												</div>
+												<div class="comment-body">
+													<h3>${c.name}</h3>
+													<div class="meta">${c.date}</div>
+													<p>${c.content}</p>
+													<p>
+														<a href="#" class="reply">Reply</a>
 													</p>
 												</div>
-												<p class="mb-4">${b.description}</p>
+											</li>
+									</ul>
+										</c:forEach>
+									<!-- 									<ul class="comment-list">
+										<li class="comment">
+											<div class="vcard bio">
+												<img src="/blog/images/person_1.jpg" alt="Image placeholder">
+											</div>
+											<div class="comment-body">
+												<h3>John Doe</h3>
+												<div class="meta">October 03, 2018 at 2:21pm</div>
+												<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+													elit. Pariatur quidem laborum necessitatibus, ipsam impedit
+													vitae autem, eum officia, fugiat saepe enim sapiente iste
+													iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
 												<p>
-													<a href="/single/${b.id}" class="btn-custom">Read More
-														<span class="ion-ios-arrow-forward"></span>
-													</a>
+													<a href="#" class="reply">Reply</a>
 												</p>
 											</div>
-										</div>
-									</div>
-								</c:forEach>
-							</div>
-							<!-- END-->
-							<div class="row">
-								<div class="col">
-									<div class="block-27">
-										<ul>
-											<li><a href="#">&lt;</a></li>
-											<li class="active"><span>1</span></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#">5</a></li>
-											<li><a href="#">&gt;</a></li>
-										</ul>
-									</div>
+
+											<ul class="children">
+												<li class="comment">
+													<div class="vcard bio">
+														<img src="/blog/images/person_1.jpg"
+															alt="Image placeholder">
+													</div>
+													<div class="comment-body">
+														<h3>John Doe</h3>
+														<div class="meta">October 03, 2018 at 2:21pm</div>
+														<p>Lorem ipsum dolor sit amet, consectetur adipisicing
+															elit. Pariatur quidem laborum necessitatibus, ipsam
+															impedit vitae autem, eum officia, fugiat saepe enim
+															sapiente iste iure! Quam voluptas earum impedit
+															necessitatibus, nihil?</p>
+														<p>
+															<a href="#" class="reply">Reply</a>
+														</p>
+													</div>
+
+
+													<ul class="children">
+														<li class="comment">
+															<div class="vcard bio">
+																<img src="/blog/images/person_1.jpg"
+																	alt="Image placeholder">
+															</div>
+															<div class="comment-body">
+																<h3>John Doe</h3>
+																<div class="meta">October 03, 2018 at 2:21pm</div>
+																<p>Lorem ipsum dolor sit amet, consectetur
+																	adipisicing elit. Pariatur quidem laborum
+																	necessitatibus, ipsam impedit vitae autem, eum officia,
+																	fugiat saepe enim sapiente iste iure! Quam voluptas
+																	earum impedit necessitatibus, nihil?</p>
+																<p>
+																	<a href="#" class="reply">Reply</a>
+																</p>
+															</div>
+
+															<ul class="children">
+																<li class="comment">
+																	<div class="vcard bio">
+																		<img src="/blog/images/person_1.jpg"
+																			alt="Image placeholder">
+																	</div>
+																	<div class="comment-body">
+																		<h3>John Doe</h3>
+																		<div class="meta">October 03, 2018 at 2:21pm</div>
+																		<p>Lorem ipsum dolor sit amet, consectetur
+																			adipisicing elit. Pariatur quidem laborum
+																			necessitatibus, ipsam impedit vitae autem, eum
+																			officia, fugiat saepe enim sapiente iste iure! Quam
+																			voluptas earum impedit necessitatibus, nihil?</p>
+																		<p>
+																			<a href="#" class="reply">Reply</a>
+																		</p>
+																	</div>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul> -->
+									<!-- END comment-list -->
 								</div>
 							</div>
+							<!-- END-->
 						</div>
-						<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+						<div class="col-lg-4 sidebar ftco-animate bg-light pt-5">
 							<div class="sidebar-box pt-md-4">
 								<form action="#" class="search-form">
 									<div class="form-group">
@@ -236,7 +299,7 @@
 								</ul>
 							</div>
 
-							<div class="sidebar-box subs-wrap img py-4"
+							<div class="sidebar-box subs-wrap img"
 								style="background-image: url(/blog/images/bg_1.jpg);">
 								<div class="overlay"></div>
 								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
@@ -254,7 +317,7 @@
 							<div class="sidebar-box ftco-animate">
 								<h3 class="sidebar-heading">Archives</h3>
 								<ul class="categories">
-									<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
+									<li><a href="#">December 2018 <span>(10)</span></a></li>
 									<li><a href="#">September 2018 <span>(6)</span></a></li>
 									<li><a href="#">August 2018 <span>(8)</span></a></li>
 									<li><a href="#">July 2018 <span>(2)</span></a></li>

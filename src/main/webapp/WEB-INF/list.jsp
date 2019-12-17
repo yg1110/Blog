@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach var="b" items="${book}">	
-		${b.bookName}<br>
-		${b.authorName}<br>
+	<c:forEach var="c" items="${comment}">	
+		${c.id}<br>
+		${c.name}<br>
 	</c:forEach>
 </body>
 </html>

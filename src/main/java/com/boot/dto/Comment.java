@@ -3,30 +3,33 @@ package com.boot.dto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Board")
-public class Board {
+@Document(collection = "Comment")
+public class Comment {
 	@Id
 	private int id;
-	private String title;
+	private String name;
 	private String date;
-	private String category;
-	private int comment;
-	private String description;
 	private String content;
 	private String image;
-
+	private int boardid;
+	
+	public int getBoardid() {
+		return boardid;
+	}
+	public void setBoardid(int boardid) {
+		this.boardid = boardid;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getDate() {
 		return date;
@@ -34,25 +37,6 @@ public class Board {
 	public void setDate(String date) {
 		this.date = date;
 	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public int getComment() {
-		return comment;
-	}
-	public void setComment(int comment) {
-		this.comment = comment;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	
 	public String getContent() {
 		return content;
 	}
@@ -65,6 +49,10 @@ public class Board {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", name=" + name + ", date=" + date + ", content=" + content + ", image=" + image
+				+ ", boardid=" + boardid + "]";
+	}
 	
 }

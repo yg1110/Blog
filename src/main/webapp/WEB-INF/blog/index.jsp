@@ -4,7 +4,7 @@
 
 <html lang="kr">
 <head>
-<title>Andrea - Free Bootstrap 4 Template by Colorlib</title>
+<title>yg1110's Blog</title>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
