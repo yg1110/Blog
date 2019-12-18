@@ -76,22 +76,23 @@
 						<div class="col-xl-8 py-5 px-md-5">
 							<div class="comment-form-wrap pt-5">
 								<h3 class="mb-5">BoardWriting</h3>
-								<form action="#" class="p-3 p-md-5 bg-light">
+								<form action="/addBoard" method="post" class="p-3 p-md-5 bg-light">
 									<div class="form-group">
 										<label for="name">제목 *</label> <input type="text"
-											class="form-control" id="name">
+											class="form-control" id="name" name="title">
 									</div>
 									<div class="form-group">
 										<label for="email">카테고리 *</label><br>
-										<select>
+										<select name="category">
 											<option value="">선택하세요</option>									
 											<option value="spring">spring</option>
 											<option value="mongodb">mongodb</option>											
 										</select>
 									</div>
 									<div class="form-group">
-										<label for="website">요약</label> <input type="url"
-											class="form-control" id="website">
+										<label for="website">요약</label> <input type="text"
+											class="form-control" id="website" name="description">
+											
 									</div>
 									<div class="form-group">
 										<label for="website">이미지</label>
@@ -99,7 +100,7 @@
 									</div>
 									<div class="form-group">
 										<label for="message">내용</label>
-										<textarea name="" id="message" cols="30" rows="10"
+										<textarea name="content" id="message" cols="30" rows="10"
 											class="form-control"></textarea>
 									</div>
 									<div class="form-group">
