@@ -38,8 +38,6 @@
 <link rel="stylesheet" href="/blog/css/flaticon.css">
 <link rel="stylesheet" href="/blog/css/icomoon.css">
 <link rel="stylesheet" href="/blog/css/style.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 </head>
 <body>
@@ -78,8 +76,7 @@
 						<div class="col-xl-8 py-5 px-md-5">
 							<div class="comment-form-wrap pt-5">
 								<h3 class="mb-5">BoardWriting</h3>
-								<form action="" method="post" class="p-3 p-md-5 bg-light"
-									id="fileform">
+								<form action="addBoard" method="post" class="p-3 p-md-5 bg-light" enctype="multipart/form-data">
 									<div class="form-group">
 										<label for="name">제목 *</label> <input type="text"
 											class="form-control" id="name" name="title">
@@ -99,7 +96,7 @@
 									</div>
 									<div class="form-group">
 										<label for="website">이미지</label> <input type="file"
-											class="form-control-file" id="exampleInputFile" name="image" />
+											class="form-control-file" id="exampleInputFile" name="file" />
 									</div>
 									<div class="form-group">
 										<label for="message">내용</label>
@@ -107,7 +104,7 @@
 											class="form-control"></textarea>
 									</div>
 									<div class="form-group">
-										<input type="button" value="Post Comment"
+										<input type="submit" value="Post Comment"
 											class="btn py-3 px-4 btn-primary" id="formbutton">
 									</div>
 
@@ -268,28 +265,6 @@
 			<circle class="path" cx="24" cy="24" r="22" fill="none"
 				stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg>
 	</div>
-
-
-	<script>
-	$(function(){
-		$('#formbutton').click(function(){
-			$.ajax({
-			    url : 'addBoard',
-			    type : "POST",
-			    data : $("#fileform").serialize(),
-			    success : function(data) {
-			    	alert(data.toString());	
-			    },
-				error:function(error){
-					alert(error);
-				}
-			});
-		});
-	})
-	</script>
-
-
-
 
 	<script src="/blog/js/jquery.min.js"></script>
 	<script src="/blog/js/jquery-migrate-3.0.1.min.js"></script>
