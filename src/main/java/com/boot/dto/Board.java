@@ -65,6 +65,11 @@ public class Board {
 	public void setImage(String image) {
 		this.image = image;
 	}
+	@Override
+	public String toString() {
+		return "Board [id=" + id + ", title=" + title + ", date=" + date + ", category=" + category + ", comment="
+				+ comment + ", description=" + description + ", content=" + content + ", image=" + image + "]";
+	}
 	
 	
 }
