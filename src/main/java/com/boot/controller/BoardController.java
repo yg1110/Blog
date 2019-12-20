@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.boot.Repository.BoardRepository;
 import com.boot.Repository.CommentRepository;
@@ -31,22 +32,26 @@ public class BoardController {
 	private CommentRepository commentRepository;
 
 	@RequestMapping(value = "/addBoard", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String fileup(Board board, @RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes)
+	public String fileup(Board board, @RequestParam("file") MultipartFile file, HttpSession session)
 			throws IOException {
-		System.out.println("============= add ==============");
+		System.out.println("============= addBoard ==============");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String time = format.format(date);
 		board.setDate(time);
-
+		System.out.println(session.getServletContext().getRealPath("/"));
 		if (boardRepository.count() == 0) {
 			board.setId(1);
 		} else {
 			board.setId((int) boardRepository.count() + 1);
 		}
 
-		File convertfile = new File("/Users/jeong-yeong-gil/Documents/blog/src/main/resources/static/image/"
-				+ file.getOriginalFilename());
+//		File convertfile = new File("/Users/jeong-yeong-gil/Documents/blog/src/main/resources/static/image/"
+//				+ file.getOriginalFilename());
+
+		File convertfile = new File(session.getServletContext().getRealPath("/") + "/image/"
+		+ file.getOriginalFilename());
+
 		convertfile.createNewFile();
 
 		try (FileOutputStream fout = new FileOutputStream(convertfile)) {
@@ -54,10 +59,9 @@ public class BoardController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		board.setImage("image/" + file.getOriginalFilename());
-		System.out.println(board);
+		board.setImage("/image/" + file.getOriginalFilename());
 		boardRepository.save(board);
-		return "redirect:/BoardWriting";
+		return "redirect:/findAllBoard";
 	}
 
 	@RequestMapping(value = "/findAllBoard", method = RequestMethod.GET)
