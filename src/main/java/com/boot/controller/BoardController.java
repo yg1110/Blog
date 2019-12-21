@@ -49,7 +49,7 @@ public class BoardController {
 //		File convertfile = new File("/Users/jeong-yeong-gil/Documents/blog/src/main/resources/static/image/"
 //				+ file.getOriginalFilename());
 
-		File convertfile = new File(session.getServletContext().getRealPath("/") + "/image/"
+		File convertfile = new File(session.getServletContext().getRealPath("/image/")
 		+ file.getOriginalFilename());
 
 		convertfile.createNewFile();

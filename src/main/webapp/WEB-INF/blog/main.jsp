@@ -48,6 +48,7 @@
 				<ul>
 					<li><a href="/">Home</a></li>
 					<li class="colorlib-active"><a href="/findAllBoard">Blog</a></li>
+					<li><a href="/chat">Chat</a></li>					
 				</ul>
 			</nav>
 
