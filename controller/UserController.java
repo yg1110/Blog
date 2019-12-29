@@ -29,6 +29,10 @@ public class UserController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String welcome(Model model, HttpSession httpSession) {
 		Optional<USER> isLogin = repository.findById(httpSession.toString()); //세션확인
+<<<<<<< HEAD:src/main/java/com/boot/controller/UserController.java
+		System.out.println(isLogin);
+=======
+>>>>>>> 87f20bb2bbaac7d45c065a9988f74bc395f72ebd:controller/UserController.java
 		
 		if(isLogin.isEmpty()) {
 			return "login/index";
@@ -59,8 +63,13 @@ public class UserController {
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(Model model, USER user, HttpSession httpSession) {
 		System.out.println("==============login==============");
+<<<<<<< HEAD:src/main/java/com/boot/controller/UserController.java
+		
+		USER myinfo = service.findUser(user.getEmail());
+=======
 		System.out.println(user);
 		USER myinfo = service.findUser(user);
+>>>>>>> 87f20bb2bbaac7d45c065a9988f74bc395f72ebd:controller/UserController.java
 		System.out.println(myinfo);
 		if(myinfo == null) { //로그인실패
 			return "login/index";

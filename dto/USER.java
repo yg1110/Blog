@@ -3,7 +3,11 @@ package com.boot.dto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 
+<<<<<<< HEAD:src/main/java/com/boot/dto/User.java
+@RedisHash("User")
+=======
 @RedisHash("USER")
+>>>>>>> 87f20bb2bbaac7d45c065a9988f74bc395f72ebd:dto/USER.java
 public class USER {
 	@Id
 	private String email;

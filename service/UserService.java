@@ -19,8 +19,13 @@ public class UserService implements IUserService{
 	}
 	
 	@Override
+<<<<<<< HEAD:src/main/java/com/boot/service/UserService.java
+	public USER findUser(String email) {
+		return dao.findUser(email);
+=======
 	public USER findUser(USER user) {
 		return dao.findUser(user);
+>>>>>>> 87f20bb2bbaac7d45c065a9988f74bc395f72ebd:service/UserService.java
 	}
 
 	@Override

@@ -19,8 +19,13 @@ public class UserDAO {
 		return sqlSession.selectList(ns+"getUserList");
 	}
 
+<<<<<<< HEAD:src/main/java/com/boot/dao/UserDAO.java
+	public USER findUser(String email) {
+		return sqlSession.selectOne(ns+"findUser", email);
+=======
 	public USER findUser(USER user) {
 		return sqlSession.selectOne(ns+"findUser", user);
+>>>>>>> 87f20bb2bbaac7d45c065a9988f74bc395f72ebd:dao/UserDAO.java
 	}
 
 	public void insertUser(USER user) {
