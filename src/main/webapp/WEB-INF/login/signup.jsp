@@ -28,8 +28,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<form action="/regi" method="post">	
 				<div class="col-md-12">
 					<div class="login-mail">
-						<input type="text" placeholder="Email" required="" name="email">
+						<input type="text" placeholder="Email" required="" name="id">
 						<i class="fa fa-envelope"></i>
+					</div>
+					<div class="login-mail">
+						<input type="text" placeholder="Name" required="" name="name">
+						<i class="fa fa-lock"></i>
 					</div>
 					<div class="login-mail">
 						<input type="password" placeholder="Password" required="" name="pwd">
@@ -39,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<input type="password" placeholder="Repeated Password" required="">
 						<i class="fa fa-lock"></i>
 					</div>
-					
+					<input type="hidden" value="2" name="auth">
 					<a class="news-letter" href="#"> <label class="checkbox1">
 						<input type="checkbox" name="checkbox">
 						<i></i>I agree with the terms</label>

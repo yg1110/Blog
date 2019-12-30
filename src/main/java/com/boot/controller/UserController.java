@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boot.Repository.SessionRepository;
-import com.boot.dto.USER;
-import com.boot.service.UserService;
+import com.boot.dto.Member;
+import com.boot.service.MemberService;
 
 @Controller
 public class UserController {
 	@Autowired
-	private UserService service;
+	private MemberService service;
 
 	@Autowired
 	SessionRepository repository;
@@ -28,25 +28,25 @@ public class UserController {
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String welcome(Model model, HttpSession httpSession) {
-		Optional<USER> isLogin = repository.findById(httpSession.toString()); //세션확인
+		Optional<Member> isLogin = repository.findById(httpSession.toString()); //세션확인
 		
 		if(isLogin.isEmpty()) {
 			return "login/index";
 		}
 		
 		if(isLogin.get().getAuth() == 1) { //운영자 세션정보가 있을경우
-			model.addAttribute("name", isLogin.get().getPwd());
+			model.addAttribute("name", isLogin.get().getName());
 			return "blog/DashBoard";
 		}
 		else { //유저 세션정보가 있을경우
-			model.addAttribute("name", isLogin.get().getPwd());
+			model.addAttribute("name", isLogin.get().getName());
 			return "blog/index";
 		}
 	}
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public String list(Model model) {
-		model.addAttribute("user", service.getUserList());
+		model.addAttribute("user", service.getMemberList());
 		return "list";
 	}
 	
@@ -57,29 +57,22 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
-	public String login(Model model, USER user, HttpSession httpSession) {
-		System.out.println("==============login==============");
-		System.out.println(user);
-		USER myinfo = service.findUser(user);
+	public String login(Model model, Member member, HttpSession httpSession) {
+		Member myinfo = service.findMember(member);
 		System.out.println(myinfo);
 		if(myinfo == null) { //로그인실패
 			return "login/index";
 		}
 		else {
-			//레디스에 pwd에 현재 아이디를넣고 email 세션아이디를 넣고 키로씁니다.
 			if(myinfo.getAuth()==1) { //운영자 페이지
-				myinfo.setPwd(myinfo.getEmail());
-				myinfo.setEmail(httpSession.toString());
-				model.addAttribute("name", myinfo.getPwd());
-
+				myinfo.setId(httpSession.toString());
+				model.addAttribute("name", myinfo.getName());
 				repository.save(myinfo);
 				return "blog/DashBoard";
 			}
 			else { //유저페이지
-				myinfo.setPwd(myinfo.getEmail());
-				myinfo.setEmail(httpSession.toString());
-				model.addAttribute("name", myinfo.getPwd());
-
+				myinfo.setId(httpSession.toString());
+				model.addAttribute("name", myinfo.getName());
 				repository.save(myinfo);
 				return "blog/index";
 			}
@@ -92,10 +85,8 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/regi", method=RequestMethod.POST)
-	public String regi(Model model, USER user) {
-		System.out.println("==============regi==============");
-		System.out.println("들어온 값 : " + user);
-		service.insertUser(user);
+	public String regi(Model model, Member member) {
+		service.insertMember(member);
 		return "redirect:/";
 	}
 }

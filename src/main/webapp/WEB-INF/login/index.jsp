@@ -27,7 +27,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<form action="/login" method="post">
 				<div class="col-md-12">
 					<div class="login-mail">
-						<input type="text" placeholder="Email" required="" name="email">
+						<input type="text" placeholder="Email" required="" name="id">
 						<i class="fa fa-envelope"></i>
 					</div>
 					<div class="login-mail">

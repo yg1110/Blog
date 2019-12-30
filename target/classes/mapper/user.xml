@@ -3,16 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yg1110.blog">
-	<select id="getUserList" resultType="com.boot.dto.User">
-		SELECT * FROM USER
+	<select id="getMemberList" resultType="com.boot.dto.Member">
+		SELECT * FROM BLOG.MEMBER
 	</select>
 
-	<select id="findUser" parameterType="java.lang.String" resultType="com.boot.dto.User">
-		SELECT * FROM USER WHERE EMAIL = #{email}
+	<select id="findMember" parameterType="com.boot.dto.Member" resultType="com.boot.dto.Member">
+		SELECT * FROM BLOG.MEMBER WHERE ID = #{id} AND PWD = #{pwd}
 	</select>
 	
-	<insert id="insertUser" parameterType="com.boot.dto.User">
-		INSERT INTO USER(EMAIL, PWD) VALUES(#{email}, #{pwd});
+	<insert id="insertMember" parameterType="com.boot.dto.Member">
+		INSERT INTO BLOG.MEMBER(ID, NAME, PWD, AUTH) VALUES(#{id}, #{name}, #{pwd}, 2);
 	</insert>
 	
 </mapper>
