@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.boot.dao.MemberDao;
-import com.boot.dto.Member;
+import com.boot.dto.User;
 
 @Service
 public class MemberService implements IMemberService{
@@ -14,18 +14,18 @@ public class MemberService implements IMemberService{
 	private MemberDao dao;
 
 	@Override
-	public List<Member> getMemberList() {
-		return dao.getMemberList();
+	public List<User> getUserList() {
+		return dao.getUserList();
 	}
 	
 	@Override
-	public Member findMember(Member member) {
-		return dao.findMember(member);
+	public User findUser(User user) {
+		return dao.findUser(user);
 	}
 
 	@Override
-	public void insertMember(Member member) {
-		dao.insertMember(member);
+	public void insertUser(User user) {
+		dao.insertUser(user);
 	}
 	
 }

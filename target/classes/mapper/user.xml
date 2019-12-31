@@ -3,16 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yg1110.blog">
-	<select id="getMemberList" resultType="com.boot.dto.Member">
-		SELECT * FROM BLOG.MEMBER
+	<select id="getUserList" resultType="com.boot.dto.User">
+		SELECT * FROM USER
 	</select>
 
-	<select id="findMember" parameterType="com.boot.dto.Member" resultType="com.boot.dto.Member">
-		SELECT * FROM BLOG.MEMBER WHERE ID = #{id} AND PWD = #{pwd}
+	<select id="findUser" parameterType="com.boot.dto.User" resultType="com.boot.dto.User">
+		SELECT * FROM USER WHERE ID = #{username} AND PWD = #{password}
 	</select>
 	
-	<insert id="insertMember" parameterType="com.boot.dto.Member">
-		INSERT INTO BLOG.MEMBER(ID, NAME, PWD, AUTH) VALUES(#{id}, #{name}, #{pwd}, #{auth});
+	<insert id="insertUser" parameterType="com.boot.dto.User">
+		INSERT INTO USER(ID, ENABLED, PASSWORD, USERNAME) VALUES(#{id}, 1, #{password}, #{username});
 	</insert>
 	
 </mapper>

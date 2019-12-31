@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.boot.dto.Member;
+import com.boot.dto.User;
 
 @Repository
 public class MemberDao {
@@ -15,15 +15,15 @@ public class MemberDao {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public List<Member> getMemberList (){
-		return sqlSession.selectList(ns+"getMemberList");
+	public List<User> getUserList (){
+		return sqlSession.selectList(ns+"getUserList");
 	}
 
-	public Member findMember(Member member) {
-		return sqlSession.selectOne(ns+"findMember", member);
+	public User findUser(User user) {
+		return sqlSession.selectOne(ns+"findUser", user);
 	}
 
-	public void insertMember(Member member) {
-		sqlSession.insert(ns+"insertMember", member);
+	public void insertUser(User user) {
+		sqlSession.insert(ns+"insertUser", user);
 	}
 }

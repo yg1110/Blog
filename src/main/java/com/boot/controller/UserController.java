@@ -4,9 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -16,14 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boot.Repository.SessionRepository;
 import com.boot.Repository.UserRepository;
-import com.boot.dto.Authority;
-import com.boot.dto.Member;
-import com.boot.service.MemberService;
+import com.boot.dto.User;
+import com.boot.service.IMemberService;
 
 @Controller
 public class UserController {
 	@Autowired
-	private MemberService service;
+	IMemberService member;
 
 	@Autowired
 	SessionRepository repository;
@@ -119,11 +115,11 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/regi", method=RequestMethod.POST)
-	public String regi(Model model, Member member) {
-		member.setPwd(passwordEncoder.encode(member.getPwd()));
-		
-		System.out.println(member);
-		service.insertMember(member);
+	public String regi(Model model, User user) {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		user.setId((long)member.getUserList().size() + 1);
+		member.insertUser(user);
 		return "redirect:/";
 	}
 }

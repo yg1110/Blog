@@ -7,8 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.boot.service.UserService;
 
@@ -17,13 +16,13 @@ import com.boot.service.UserService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	String[] resources = new String[] { "/blog/**", "/chat/**", "/login/**"};
+	String[] resources = new String[] { "/blog/**", "/main/**", "/image/**"};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests().antMatchers(resources).permitAll()
-			.antMatchers("/","/signup","/regi").permitAll()
+			.antMatchers("/","/login","/signup","/regi").permitAll()
 			.antMatchers("/admin*").access("hasRole('ADMIN')")
 			.antMatchers("/user*").access("hasRole('USER')")
 			.anyRequest().authenticated()
@@ -31,16 +30,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin().loginPage("/login").permitAll()
 			.defaultSuccessUrl("/list")
 			.failureUrl("/fail")
-			.usernameParameter("id")
-			.passwordParameter("pwd")
+			.usernameParameter("username")
+			.passwordParameter("password")
 			.and()
 			.logout().permitAll()
 			.logoutSuccessUrl("/login?logout");
 	}
+	
+	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	public BCryptPasswordEncoder passwordEncoder() {
+		bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+		return bCryptPasswordEncoder;
+	}
+
+	@Autowired
+	UserService userService;
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
 	}
 
 }
