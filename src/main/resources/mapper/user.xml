@@ -12,7 +12,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertMember" parameterType="com.boot.dto.Member">
-		INSERT INTO BLOG.MEMBER(ID, NAME, PWD, AUTH) VALUES(#{id}, #{name}, #{pwd}, 2);
+		INSERT INTO BLOG.MEMBER(ID, NAME, PWD, AUTH) VALUES(#{id}, #{name}, #{pwd}, #{auth});
 	</insert>
 	
 </mapper>
