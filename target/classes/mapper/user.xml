@@ -12,7 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="insertUser" parameterType="com.boot.dto.User">
-		INSERT INTO USER(ID, ENABLED, PASSWORD, USERNAME) VALUES(#{id}, 1, #{password}, #{username});
+		INSERT INTO USER(ID, ENABLED, PASSWORD, USERNAME) VALUES(#{id}, 1, #{password}, #{username})
 	</insert>
 	
+	<insert id="insertAuth" parameterType="com.boot.dto.Auth">
+		INSERT INTO AUTHORITIES_USERS(USUARIO_ID, AUTHORITY_ID) VALUES(#{usuario_id},#{authority_id})
+	</insert>
 </mapper>

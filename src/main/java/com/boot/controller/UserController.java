@@ -1,5 +1,7 @@
 package com.boot.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +13,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.boot.Repository.AccountRepository;
 import com.boot.Repository.SessionRepository;
-import com.boot.Repository.UserRepository;
+import com.boot.dto.Auth;
 import com.boot.dto.User;
-import com.boot.service.IMemberService;
+import com.boot.service.IUserService;
 
 @Controller
 public class UserController {
 	@Autowired
-	IMemberService member;
+	IUserService userService;
 
 	@Autowired
 	SessionRepository repository;
@@ -28,27 +31,22 @@ public class UserController {
 	StringRedisTemplate reidstemplate;
 		
 	@Autowired
-	UserRepository userRepository;
+	AccountRepository accountRepository;
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
-
-
+	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public String welcome(Model model, HttpSession httpSession) {
-//		Member user = userRepository.findById("user").orElseThrow(() -> new UsernameNotFoundException("No existe usuario"));
-//		for (Authority authority : user.getAuth()) {
-//			GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getAuth());
-//			System.out.println(grantedAuthority);
-//		}
+		
 
-//		Optional<Member> isLogin = repository.findById(httpSession.toString()); //세션확인
-//		
+//		Optional<User> isLogin = repository.findById(httpSession.toString()); //세션확인
+		
 //		if(isLogin.isEmpty()) {
 //			return "login/index";
 //		}
 //		
-//		if(isLogin.get().getAuth().equals("ROLE_ADMIN")) { //운영자 세션정보가 있을경우
+//		if(isLogin.get().getAuthority().) { //운영자 세션정보가 있을경우
 //			model.addAttribute("name", isLogin.get().getName());
 //			return "blog/DashBoard";
 //		}
@@ -56,70 +54,50 @@ public class UserController {
 //			model.addAttribute("name", isLogin.get().getName());
 //			return "blog/index";
 //		}
-		return "index";
+		return "login/index";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model) {
-		return "login";
+		return "login/index";
 	}
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model) {
-		return "list";
+	public String list(Model model, Principal principal) {
+		System.out.println(principal.getName());
+		if(principal.getName().equals("admin")) {
+			model.addAttribute("name", principal.getName());
+			return "blog/DashBoard";
+		}
+		else {
+			model.addAttribute("name", principal.getName());
+			return "blog/index";
+		}
 	}
 	
-	@RequestMapping(value="/fail", method=RequestMethod.GET)
-	public String fail(Model model) {
-		return "fail";
-	}
-	
-//	@RequestMapping(value="/logout", method=RequestMethod.GET)
-//	public String logout(HttpSession httpSession) {
-//		repository.deleteById(httpSession.toString());
-//		return "redirect:/";
-//	}
-//	
-//	@RequestMapping(value="/login", method=RequestMethod.POST)
-//	public String login(Model model, Member member, HttpSession httpSession) {
-//		System.out.println("ddd");
-//		Member myinfo = service.findMember(member);
-//		System.out.println(myinfo);
-//		if(myinfo == null) { //로그인실패
-//			return "login/index";
-//		}
-//		else {
-//			if(myinfo.getAuth().equals("ROLE_ADMIN")) { //운영자 페이지
-//				myinfo.setId(httpSession.toString());
-//				model.addAttribute("name", myinfo.getName());
-//				repository.save(myinfo);
-//				return "blog/DashBoard";
-//			}
-//			else { //유저페이지
-//				myinfo.setId(httpSession.toString());
-//				model.addAttribute("name", myinfo.getName());
-//				repository.save(myinfo);
-//				return "blog/index";
-//			}
-//		}
-//	}
-//	
-//	@RequestMapping(value="/login", method=RequestMethod.GET)
-//	public String log() {
-//		return "login/index";
-//	}
+
 	
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup() {
-		return "signup";
+		return "login/signup";
 	}
 	
 	@RequestMapping(value="/regi", method=RequestMethod.POST)
 	public String regi(Model model, User user) {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		user.setId((long)member.getUserList().size() + 1);
-		member.insertUser(user);
+		
+		if((long)userService.getUserList().size() == 0) {
+			user.setId((long)1);
+		}
+		else {
+			user.setId((long)userService.getUserList().size() + 1);
+		}
+		Auth auth = new Auth();
+		auth.setAuthority_id((long)2);
+		auth.setUsuario_id((long)user.getId());
+		userService.insertUser(user);
+		userService.insertAuth(auth);
 		return "redirect:/";
 	}
 }

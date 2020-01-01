@@ -1,7 +1,9 @@
-<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
+<!DOCTYPE html>
 <html lang="kr">
 <head>
 <title>yg1110's Blog</title>
@@ -19,8 +21,10 @@
 	href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap"
 	rel="stylesheet">
 
-<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/8502ddd6cc.js" crossorigin="anonymous"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/8502ddd6cc.js"
+	crossorigin="anonymous"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
@@ -43,7 +47,6 @@
 <link rel="stylesheet" href="/blog/css/style.css">
 </head>
 <body>
-
 	<div id="colorlib-page">
 		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle"><i></i></a>
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
@@ -92,8 +95,11 @@
 									많습니다.<br> 현재 이 웹사이트는 SpringBoot + mysql + mongoDB + redis로
 									제작되었습니다.
 								</p>
-								<i class="fab fa-github"></i> &nbsp;
-								<i class="fab fa-blogger-b"></i>
+								<i class="fab fa-github"></i> &nbsp; <i class="fab fa-blogger-b"></i>
+								<form action="/logout" method="post">
+									<sec:csrfInput />
+									<button type="submit">전송</button>
+								</form>
 
 							</div>
 						</div>

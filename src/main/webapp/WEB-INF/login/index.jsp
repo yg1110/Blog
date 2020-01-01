@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
-<html lang="kr" xmlns:th="http://www.typeleaf.org">
+<html lang="kr">
 <head>
 <title>yg1110 Blog</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,7 +28,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		</h1>
 		<div class="login-bottom">
 			<h2>Login</h2>
-			<form th:action="@{/login}" method="post">
+			<form action="/login" method="post">
+				<sec:csrfInput />
 				<div class="col-md-12">
 					<div class="login-mail">
 						<input type="text" placeholder="Email" required="" name="username">
@@ -51,12 +53,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="clearfix"></div>
 			</form>
-			<div th:if="${param.error}" class="alert alert-danger" role="alert">
-		            Invalid username and password.
-		        </div>
-		        <div th:if="${param.logout}" class="alert alert-success" role="alert">
-		            You have been logged out.
-		        </div>
 		</div>
 	</div>
 	<div class="copy-right">
@@ -66,4 +62,3 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<script src="/main/js/scripts.js"></script>
 </body>
 </html>
-

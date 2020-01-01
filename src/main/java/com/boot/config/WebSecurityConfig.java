@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.boot.service.UserService;
+import com.boot.service.AccountService;
 
 
 @Configuration
@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.formLogin().loginPage("/login").permitAll()
 			.defaultSuccessUrl("/list")
-			.failureUrl("/fail")
+			.failureUrl("/login?error=true")
 			.usernameParameter("username")
 			.passwordParameter("password")
 			.and()
@@ -46,11 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	@Autowired
-	UserService userService;
+	AccountService accountService;
 
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
+		auth.userDetailsService(accountService).passwordEncoder(passwordEncoder());
 	}
 
 }
