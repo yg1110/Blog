@@ -46,7 +46,7 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					<li><a href="/">Home</a></li>
+					<li><a href="/list">Home</a></li>
 					<li class="colorlib-active"><a href="/findAllBoard">Blog</a></li>
 					<li><a href="/chat">Chat</a></li>					
 				</ul>

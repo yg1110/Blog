@@ -37,9 +37,8 @@ public class UserController {
 	PasswordEncoder passwordEncoder;
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String welcome(Model model, HttpSession httpSession) {
-		
-
+	public String welcome(Model model, HttpSession httpSession, Principal principal) {
+		return "login/index";
 //		Optional<User> isLogin = repository.findById(httpSession.toString()); //세션확인
 		
 //		if(isLogin.isEmpty()) {
@@ -54,7 +53,6 @@ public class UserController {
 //			model.addAttribute("name", isLogin.get().getName());
 //			return "blog/index";
 //		}
-		return "login/index";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)

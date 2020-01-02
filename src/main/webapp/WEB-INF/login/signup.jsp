@@ -30,7 +30,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 		<div class="login-bottom">
 			<h2>Register</h2>
 			<form action="/regi" method="post">
-				<sec:csrfInput />
+				
 
 				<div class="col-md-12">
 					<div class="login-mail">

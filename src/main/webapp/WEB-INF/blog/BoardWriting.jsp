@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -76,7 +77,9 @@
 						<div class="col-xl-8 py-5 px-md-5">
 							<div class="comment-form-wrap pt-5">
 								<h3 class="mb-5">BoardWriting</h3>
-								<form action="addBoard" method="post" class="p-3 p-md-5 bg-light" enctype="multipart/form-data">
+								<form action="/addBoard.do" method="post"
+									class="p-3 p-md-5 bg-light" enctype="multipart/form-data">
+									<sec:csrfInput />
 									<div class="form-group">
 										<label for="name">제목 *</label> <input type="text"
 											class="form-control" id="name" name="title">
@@ -98,15 +101,18 @@
 										<label for="website">이미지</label> <input type="file"
 											class="form-control-file" id="exampleInputFile" name="file" />
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<label for="message">내용</label>
 										<textarea name="content" id="message" cols="30" rows="10"
 											class="form-control"></textarea>
-									</div>
+									</div> -->
+									<div id="divText" contentEditable="true"
+										placeholder="여기에 글자를 입력해주세요."></div>
 									<div class="form-group">
-										<input type="submit" value="Post Comment"
+										<input type="button" value="Post Comment"
 											class="btn py-3 px-4 btn-primary" id="formbutton">
 									</div>
+									<button type="button" id="clickBtn">확인</button>
 
 								</form>
 							</div>
@@ -282,6 +288,19 @@
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 	<script src="/blog/js/google-map.js"></script>
 	<script src="/blog/js/main.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
+	<script type="text/javascript">
+		$('#clickBtn').on('click', function(event) {
+			if ($('#divText').text().length == 0) {
+				alert('글자를 입력해주세요.')
+			} else {
+				var sendData = $('#divText').html();
+				alert(sendData);
+			}
+
+		})
+	</script>
 </body>
 </html>

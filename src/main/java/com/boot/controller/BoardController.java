@@ -31,7 +31,7 @@ public class BoardController {
 	@Autowired
 	private CommentRepository commentRepository;
 
-	@RequestMapping(value = "/addBoard", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@RequestMapping(value = "/addBoard.do", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String fileup(Board board, @RequestParam("file") MultipartFile file, HttpSession session)
 			throws IOException {
 		System.out.println("============= addBoard ==============");
@@ -46,11 +46,11 @@ public class BoardController {
 			board.setId((int) boardRepository.count() + 1);
 		}
 
-//		File convertfile = new File("/Users/jeong-yeong-gil/Documents/blog/src/main/resources/static/image/"
-//				+ file.getOriginalFilename());
+		File convertfile = new File("/Users/jeong-yeong-gil/Documents/stswork/Blog/src/main/resources/static/image/"
+				+ file.getOriginalFilename());
 
-		File convertfile = new File(session.getServletContext().getRealPath("/image/")
-		+ file.getOriginalFilename());
+//		File convertfile = new File(session.getServletContext().getRealPath("/image/")
+//		+ file.getOriginalFilename());
 
 		convertfile.createNewFile();
 
