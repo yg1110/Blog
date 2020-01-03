@@ -16,7 +16,7 @@ import com.boot.service.AccountService;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	String[] resources = new String[] { "/blog/**", "/main/**", "/image/**"};
+	String[] resources = new String[] { "/login/**"};
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {

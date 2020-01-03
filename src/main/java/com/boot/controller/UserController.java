@@ -1,7 +1,5 @@
 package com.boot.controller;
 
-import java.security.Principal;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boot.Repository.AccountRepository;
+import com.boot.Repository.BoardRepository;
 import com.boot.Repository.SessionRepository;
 import com.boot.dto.Auth;
 import com.boot.dto.User;
@@ -36,11 +35,22 @@ public class UserController {
 	@Autowired
 	PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	BoardRepository boardRepository;
+	
 	@RequestMapping(value="/", method=RequestMethod.GET)
-	public String welcome(Model model, HttpSession httpSession, Principal principal) {
-		return "login/index";
+	public String welcome(Model model, HttpSession httpSession) {
+		if(httpSession.getAttribute("login")!=null) {
+//			System.out.println(httpSession.getAttribute("login"));
+			model.addAttribute("board", boardRepository.findAll());
+			return "blog/blog-list";
+		}
+		else {
+			return "blog/login";
+		}
+
 //		Optional<User> isLogin = repository.findById(httpSession.toString()); //세션확인
-		
+
 //		if(isLogin.isEmpty()) {
 //			return "login/index";
 //		}
@@ -57,27 +67,18 @@ public class UserController {
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login(Model model) {
-		return "login/index";
+		return "blog/login";
 	}
 
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model, Principal principal) {
-		System.out.println(principal.getName());
-		if(principal.getName().equals("admin")) {
-			model.addAttribute("name", principal.getName());
-			return "blog/DashBoard";
-		}
-		else {
-			model.addAttribute("name", principal.getName());
-			return "blog/index";
-		}
+	public String list(Model model) {
+		model.addAttribute("board", boardRepository.findAll());
+		return "blog/blog-list";
 	}
-	
-
 	
 	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public String signup() {
-		return "login/signup";
+		return "blog'/signup";
 	}
 	
 	@RequestMapping(value="/regi", method=RequestMethod.POST)

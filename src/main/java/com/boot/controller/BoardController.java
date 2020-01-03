@@ -34,7 +34,6 @@ public class BoardController {
 	@RequestMapping(value = "/addBoard.do", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String fileup(Board board, @RequestParam("file") MultipartFile file, HttpSession session)
 			throws IOException {
-		System.out.println("============= addBoard ==============");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String time = format.format(date);
@@ -74,7 +73,7 @@ public class BoardController {
 	public String single(Model model, @PathVariable int id) {
 		model.addAttribute("board", boardRepository.findById(id).get());
 		model.addAttribute("comment", commentRepository.findByBoardid(id));
-		return "blog/single";
+		return "blog/blog-post";
 	}
 
 	@RequestMapping(value = "/BoardWriting", method = RequestMethod.GET)
