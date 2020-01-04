@@ -78,6 +78,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/BoardWriting", method = RequestMethod.GET)
 	public String boardadd() {
-		return "blog/BoardWriting";
+		return "blog/blog-write";
 	}
 }

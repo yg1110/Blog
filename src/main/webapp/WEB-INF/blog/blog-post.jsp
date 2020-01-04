@@ -31,10 +31,9 @@
 </head>
 
 <body>
-
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
-			<a href="index.html">Anthony's Blog</a>
+			<a href="/">YG1110 Blog</a>
 		</h1>
 
 		<nav class="navbar navbar-expand-lg navbar-dark">
@@ -51,44 +50,40 @@
 						src="../assets/images/정영길.jpg" alt="image">
 
 					<div class="bio mb-3">
-						Hi, my name is Anthony Doe. Briefly introduce yourself here. You
-						can also provide a link to the about page.<br>
-						<a href="about.html">Find out more about me</a>
+						<b>안녕하세요 저는 정영길입니다.<br> 이 블로그는 SpringBoot, MySQL,
+							MongoDB, Redis로 제작되었습니다.<br>
+							<div class="my-2 my-md-3">
+								<a class="btn btn-link" href="#">내 프로필 수정하기</a>
+							</div>
 					</div>
-					<!--//bio-->
 					<ul class="social-list list-inline py-3 mx-auto">
 						<li class="list-inline-item"><a href="#"><i
 								class="fab fa-twitter fa-fw"></i></a></li>
 						<li class="list-inline-item"><a href="#"><i
 								class="fab fa-linkedin-in fa-fw"></i></a></li>
-						<li class="list-inline-item"><a href="#"><i
+						<li class="list-inline-item"><a
+							href="https://github.com/yg1110"><i
 								class="fab fa-github-alt fa-fw"></i></a></li>
 						<li class="list-inline-item"><a href="#"><i
 								class="fab fa-stack-overflow fa-fw"></i></a></li>
 						<li class="list-inline-item"><a href="#"><i
 								class="fab fa-codepen fa-fw"></i></a></li>
 					</ul>
-					<!--//social-list-->
 					<hr>
 				</div>
-				<!--//profile-section-->
 
 				<ul class="navbar-nav flex-column text-left">
-					<li class="nav-item"><a class="nav-link" href="index.html"><i
+					<li class="nav-item"><a class="nav-link" href="/"><i
 							class="fas fa-home fa-fw mr-2"></i>Blog Home <span
 							class="sr-only">(current)</span></a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="blog-post.html"><i class="fas fa-bookmark fa-fw mr-2"></i>Blog
-							Post</a></li>
-					<li class="nav-item"><a class="nav-link" href="about.html"><i
+					<li class="nav-item active"><a class="nav-link" href="#"><i
+							class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i
 							class="fas fa-user fa-fw mr-2"></i>About Me</a></li>
 				</ul>
 
 				<div class="my-2 my-md-3">
-
-					<a class="btn btn-primary" href="https://themes.3rdwavemedia.com/"
-						target="_blank">Get in Touch</a>
-
+					<a class="btn btn-primary" href="#">글쓰기</a>
 				</div>
 			</div>
 		</nav>
@@ -99,47 +94,27 @@
 		<article class="blog-post px-3 py-5 p-md-5">
 			<div class="container">
 				<header class="blog-post-header">
-					<h2 class="title mb-2">Why Every Developer Should Have A Blog</h2>
+					<h2 class="title mb-2">${board.title}</h2>
 					<div class="meta mb-3">
-						<span class="date">Published 3 months ago</span><span class="time">5
-							min read</span><span class="comment"><a href="#">4 comments</a></span>
+						<span class="date">${board.date}</span><span class="time">${board.category}</span>
 					</div>
 				</header>
 
 				<div class="blog-post-body">
 					<figure class="blog-banner">
 						<a href="https://made4dev.com"><img class="img-fluid"
-							src="../assets/images/blog/blog-post-banner.jpg" alt="image"></a>
-						<figcaption class="mt-2 text-center image-caption">
+							src="${board.image}" alt="image"></a>
+						<!-- <figcaption class="mt-2 text-center image-caption">
 							Image Credit: <a href="https://made4dev.com?ref=devblog"
 								target="_blank">made4dev.com (Premium Programming T-shirts)</a>
-						</figcaption>
+						</figcaption> -->
 					</figure>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-						Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-						penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-						Donec quam felis, ultricies nec, pellentesque eu, pretium quis,
-						sem. Nulla consequat massa quis enim. Donec pede justo, fringilla
-						vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut,
-						imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede
-						mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum
-						semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-						porttitor eu, consequat vitae, eleifend ac, enim.</p>
+					<p>${board.content}</p>
 
 					<h3 class="mt-5 mb-3">Code Block Example</h3>
 					<p>
 						You can get more info at <a href="https://highlightjs.org/"
-							target="_blank">https://highlightjs.org/</a>. Lorem ipsum dolor
-						sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-						dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis
-						parturient montes, nascetur ridiculus mus. Donec quam felis,
-						ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat
-						massa quis enim. Donec pede justo, fringilla vel, aliquet nec,
-						vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-						venenatis vitae, justo. Nullam dictum felis eu pede mollis
-						pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper
-						nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-						porttitor eu, consequat vitae, eleifend ac, enim.
+							target="_blank">https://highlightjs.org/</a>.
 					</p>
 					<pre>
 					    <code>
@@ -215,24 +190,6 @@ export  $initHighlight;
 						</tbody>
 					</table>
 
-					<h5 class="mb-3">Embed A Tweet:</h5>
-
-					<blockquote class="twitter-tweet" data-lang="en">
-						<p lang="en" dir="ltr">
-							1969:<br>-what&#39;re you doing with that 2KB of RAM?<br>-sending
-							people to the moon<br>
-							<br>2017:<br>-what&#39;re you doing with that 1.5GB of
-							RAM?<br>-running Slack
-						</p>
-						&mdash; I Am Devloper (@iamdevloper) <a
-							href="https://twitter.com/iamdevloper/status/926458505355235328?ref_src=twsrc%5Etfw">November
-							3, 2017</a>
-					</blockquote>
-					<script async src="https://platform.twitter.com/widgets.js"
-						charset="utf-8"></script>
-
-
-
 					<h3 class="mt-5 mb-3">Video Example</h3>
 					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
 						Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
@@ -242,9 +199,7 @@ export  $initHighlight;
 
 					<div class="embed-responsive embed-responsive-16by9">
 						<iframe width="560" height="315"
-							src="https://www.youtube.com/embed/hnCmSXCZEpU" frameborder="0"
-							allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen></iframe>
+							src="https://www.youtube.com/embed/hnCmSXCZEpU"></iframe>
 					</div>
 
 				</div>
@@ -258,84 +213,23 @@ export  $initHighlight;
 						class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
 
-				<!-- <div class="blog-comments-section">
-					<div id="disqus_thread"></div>
-					<script>
-					    (function() {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
-					        var d = document, s = d.createElement('script');
-					        
-					        s.src = 'https://3wmthemes.disqus.com/embed.js';
-					        
-					        s.setAttribute('data-timestamp', +new Date());
-					        (d.head || d.body).appendChild(s);
-					    })();
-					</script>
-					<noscript>
-					    Please enable JavaScript to view the 
-					    <a href="https://disqus.com/?ref_noscript" rel="nofollow">
-					        comments powered by Disqus.
-					    </a>
-					</noscript>
-				</div> -->
-				<div id="disqus_thread"></div>
-				<script>
-
-/**
-*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-/*
-var disqus_config = function () {
-this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-};
-*/
-(function() { // DON'T EDIT BELOW THIS LINE
-var d = document, s = d.createElement('script');
-s.src = 'https://yg1110blog.disqus.com/embed.js';
-s.setAttribute('data-timestamp', +new Date());
-(d.head || d.body).appendChild(s);
-})();
-</script>
-				<noscript>
-					Please enable JavaScript to view the <a
-						href="https://disqus.com/?ref_noscript">comments powered by
-						Disqus.</a>
-				</noscript>
+					<script id="cosmosfarm-comments-script" type="text/javascript"
+						src="https://plugin.cosmosfarm.com/comments.js"></script>
+					<div id="cosmosfarm-comments" data-plugin-id="1149088022764772"
+						data-href="http://175.203.213.8:8080/single/${board.id}"
+						data-width="790" data-row="10">
+						<a href="http://www.cosmosfarm.com/plugin/comments">코스모스팜 소셜댓글</a>
+					</div>
 			</div>
 		</article>
 
-		<section class="promo-section theme-bg-light py-5 text-center">
-			<div class="container">
-				<h2 class="title">Promo Section Heading</h2>
-				<p>You can use this section to promote your side projects etc.
-					Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
-					commodo ligula eget dolor. Aenean massa.</p>
-				<figure class="promo-figure">
-					<a href="https://made4dev.com" target="_blank"><img
-						class="img-fluid" src="../assets/images/promo-banner.jpg"
-						alt="image"></a>
-				</figure>
-			</div>
-			<!--//container-->
-		</section>
-		<!--//promo-section-->
-
 		<footer class="footer text-center py-2 theme-bg-dark">
-
-			<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-			<small class="copyright">Designed with <i
-				class="fas fa-heart" style="color: #fb866a;"></i> by <a
-				href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying
-					Riley</a> for developers
+			<small class="copyright"> Designed with <i class="fas fa-heart" style="color: #fb866a;"></i>
+				by <a href="http://themes.3rdwavemedia.com" target="_blank">YG1110</a> for developers
 			</small>
-
 		</footer>
-
 	</div>
-	<!--//main-wrapper-->
 
-
-	<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
 	<div id="config-panel" class="config-panel d-none d-lg-block">
 		<div class="panel-inner">
 			<a id="config-trigger"
@@ -366,8 +260,6 @@ s.setAttribute('data-timestamp', +new Date());
 		<!--//panel-inner-->
 	</div>
 	<!--//configure-panel-->
-
-
 
 	<!-- Javascript -->
 	<script src="../assets/plugins/jquery-3.3.1.min.js"></script>

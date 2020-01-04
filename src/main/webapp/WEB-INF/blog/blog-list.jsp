@@ -27,7 +27,7 @@
 
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
-			<a href="index.html">YG1110 Blog</a>
+			<a href="/">YG1110 Blog</a>
 		</h1>
 
 		<nav class="navbar navbar-expand-lg navbar-dark">
@@ -68,16 +68,16 @@
 
 				<ul class="navbar-nav flex-column text-left">
 					<li class="nav-item active"><a class="nav-link"
-						href="index.html"><i class="fas fa-home fa-fw mr-2"></i>Blog
+						href="/"><i class="fas fa-home fa-fw mr-2"></i>Blog
 							Home <span class="sr-only">(current)</span></a></li>
-					<li class="nav-item"><a class="nav-link" href="blog-post.html"><i
+					<li class="nav-item"><a class="nav-link" href="#"><i
 							class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a></li>
-					<li class="nav-item"><a class="nav-link" href="about.html"><i
+					<li class="nav-item"><a class="nav-link" href="#"><i
 							class="fas fa-user fa-fw mr-2"></i>About Me</a></li>
 				</ul>
 
 				<div class="my-2 my-md-3">
-					<a class="btn btn-primary" href="">글쓰기</a>
+					<a class="btn btn-primary" href="/BoardWriting">글쓰기</a>
 				</div>
 			</div>
 		</nav>
