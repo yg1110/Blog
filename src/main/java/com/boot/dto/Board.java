@@ -10,7 +10,6 @@ public class Board {
 	private String title;
 	private String date;
 	private String category;
-	private int comment;
 	private String description;
 	private String content;
 	private String image;
@@ -40,12 +39,6 @@ public class Board {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public int getComment() {
-		return comment;
-	}
-	public void setComment(int comment) {
-		this.comment = comment;
-	}
 	public String getDescription() {
 		return description;
 	}
@@ -67,8 +60,8 @@ public class Board {
 	}
 	@Override
 	public String toString() {
-		return "Board [id=" + id + ", title=" + title + ", date=" + date + ", category=" + category + ", comment="
-				+ comment + ", description=" + description + ", content=" + content + ", image=" + image + "]";
+		return "Board [id=" + id + ", title=" + title + ", date=" + date + ", "
+				+ "category=" + category + " description=" + description + ", content=" + content + ", image=" + image + "]";
 	}
 	
 	

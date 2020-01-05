@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +23,6 @@
 	href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
 <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-
 </head>
 
 <body>
@@ -87,7 +88,9 @@
 		<article class="blog-post px-3 py-5 p-md-5">
 			<div class="container">
 				<form name="form" id="form" role="form" method="post"
-					action="${pageContext.request.contextPath}/board/saveBoard">
+					action="/addBoard.do">
+					<sec:csrfInput />
+
 					<div class="mb-3">
 						<label for="title">제목</label> <input type="text"
 							class="form-control" name="title" id="title"
@@ -95,30 +98,24 @@
 					</div>
 
 					<div class="mb-3">
-						<label for="reg_id">작성자</label> <input type="text"
-							class="form-control" name="reg_id" id="reg_id"
-							placeholder="이름을 입력해 주세요">
+						<label for="reg_id">카테고리</label> <input type="text"
+							class="form-control" name="category" id="reg_id"
+							placeholder="카테고리를 입력해 주세요">
 					</div>
 
 					<div class="mb-3">
 						<label for="content">내용</label>
-						<textarea name="editor1"></textarea>
+						<textarea name="content"></textarea>
 						<script>
-							CKEDITOR.replace('editor1');
+							CKEDITOR.replace('content');
 						</script>
 					</div>
 
-					<div class="mb-3">
-						<label for="tag">TAG</label> <input type="text"
-							class="form-control" name="tag" id="tag"
-							placeholder="태그를 입력해 주세요">
+					<div>
+						<button type="submit" class="btn btn-sm btn-primary" id="btnSave" style="float:right">저장</button>
 					</div>
 				</form>
 
-				<div>
-					<button type="button" class="btn btn-sm btn-primary" id="btnSave">저장</button>
-					<button type="button" class="btn btn-sm btn-primary" id="btnList">목록</button>
-				</div>
 			</div>
 		</article>
 	</div>

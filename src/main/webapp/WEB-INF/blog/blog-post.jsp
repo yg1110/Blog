@@ -215,8 +215,8 @@ export  $initHighlight;
 
 					<script id="cosmosfarm-comments-script" type="text/javascript"
 						src="https://plugin.cosmosfarm.com/comments.js"></script>
-					<div id="cosmosfarm-comments" data-plugin-id="1149088022764772"
-						data-href="http://175.203.213.8:8080/single/${board.id}"
+					<div id="cosmosfarm-comments" data-plugin-id="1016820529475808"
+						data-href="http://49.143.130.142/:8080/single/${board.id}"
 						data-width="790" data-row="10">
 						<a href="http://www.cosmosfarm.com/plugin/comments">코스모스팜 소셜댓글</a>
 					</div>

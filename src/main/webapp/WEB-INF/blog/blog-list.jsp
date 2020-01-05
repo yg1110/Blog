@@ -111,8 +111,6 @@
 								</h3>
 								<div class="meta mb-1">
 									<span class="date">${b.date}</span> <span class="time">${b.category}</span>
-									<span class="comment"><a href="#">${b.comment}
-											comments</a></span>
 								</div>
 								<div class="intro">${b.description}...</div>
 								<a class="more-link" href="/single/${b.id}">Read more &rarr;</a>
