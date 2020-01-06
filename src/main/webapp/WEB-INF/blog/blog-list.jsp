@@ -41,7 +41,7 @@
 			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
 					<img class="profile-image mb-3 rounded-circle mx-auto"
-						src="assets/images/정영길.jpg" alt="image">
+						src="../image/noprofile.png" alt="image">
 
 					<div class="bio mb-3">
 						<b>안녕하세요 저는 정영길입니다.<br> 이 블로그는 SpringBoot, MySQL,
@@ -112,7 +112,7 @@
 								<div class="meta mb-1">
 									<span class="date">${b.date}</span> <span class="time">${b.category}</span>
 								</div>
-								<div class="intro">${b.description}...</div>
+								<div class="intro">${b.description}</div>
 								<a class="more-link" href="/single/${b.id}">Read more &rarr;</a>
 							</div>
 						</div>

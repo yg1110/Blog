@@ -24,8 +24,23 @@
 <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>
+	<!-- <script  type="text/javascript">
+		window.onload = function() {
+			var btn = document.getElementById('btnSave');
+			btn.onclick = function(){
+				var tmp = CKEDITOR.instances.content.getData();
+				var val = document.getElementById('test').value = tmp;
+				var tmp2 = document.getElementById('test');
+				var tmp3 = tmp2.getElementsByTagName("img");
+				for(var i=0; i<tmp3.length; i++){
+					alert(tmp3[i].src);
+				}
+			}
+		}
+	</script> -->
 
 <body>
+	<input type="hidden" id="test">
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
 			<a href="/">YG1110 Blog</a>
@@ -42,7 +57,7 @@
 			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
 					<img class="profile-image mb-3 rounded-circle mx-auto"
-						src="../assets/images/정영길.jpg" alt="image">
+						src="../image/noprofile.png" alt="image">
 
 					<div class="bio mb-3">
 						<b>안녕하세요 저는 정영길입니다.<br> 이 블로그는 SpringBoot, MySQL,
@@ -105,14 +120,15 @@
 
 					<div class="mb-3">
 						<label for="content">내용</label>
-						<textarea name="content"></textarea>
+						<textarea name="content" id="content"></textarea>
 						<script>
 							CKEDITOR.replace('content');
 						</script>
 					</div>
 
 					<div>
-						<button type="submit" class="btn btn-sm btn-primary" id="btnSave" style="float:right">저장</button>
+						<input type="submit" class="btn btn-sm btn-primary" id="btnSave"
+							style="float: right" value="저장">
 					</div>
 				</form>
 

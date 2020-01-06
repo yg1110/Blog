@@ -38,7 +38,48 @@ public class BoardController {
 		Date date = new Date();
 		String time = format.format(date);
 		board.setDate(time);
-		System.out.println(session.getServletContext().getRealPath("/"));
+//		System.out.println(session.getServletContext().getRealPath("/"));
+		
+		int start = board.getContent().indexOf("src");
+		int end = board.getContent().indexOf(" /></p>");
+
+		if(start != -1) {
+			String word = board.getContent().substring(start+5, end-1);
+			board.setImage(word);
+		}
+		else {
+			board.setImage("image/noimg.gif");
+		}
+		
+		int index1 = 0;
+		int index2 = 0;
+		while(true) {
+			start = board.getContent().indexOf("<p>", index1);
+			end = board.getContent().indexOf("</p>", index2);
+			
+			if(start != -1) {
+				String word = board.getContent().substring(start+3, end);
+				if(word.contains("src")) {
+					index1 = start + 1;
+					index2 = end + 1;
+				}
+				else {					
+					if(word.length()>20) {				
+						board.setDescription(word.substring(0, 19));
+					}
+					else {
+						board.setDescription(word);
+					}
+					break;
+				}
+			}
+			else {
+				board.setDescription("내용없음");
+				break;
+			}
+		}
+
+		
 		if (boardRepository.count() == 0) {
 			board.setId(1);
 		} else {
@@ -60,7 +101,7 @@ public class BoardController {
 //		}
 //		board.setImage("/image/" + file.getOriginalFilename());
 		boardRepository.save(board);
-		return "redirect:/findAllBoard";
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/findAllBoard", method = RequestMethod.GET)
