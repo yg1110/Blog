@@ -34,5 +34,10 @@ public class UserService implements IUserService{
 	public void insertAuth(Auth auth) {
 		dao.insertAuth(auth);
 	}
+
+	@Override
+	public void updateUser(User user) {
+		dao.updateUser(user);
+	}
 	
 }

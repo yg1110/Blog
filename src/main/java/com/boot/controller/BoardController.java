@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.boot.Repository.BoardRepository;
 import com.boot.Repository.CommentRepository;
 import com.boot.dto.Board;
+import com.boot.dto.User;
+import com.boot.service.IUserService;
 
 @Controller
 public class BoardController {
@@ -29,6 +31,9 @@ public class BoardController {
 
 	@Autowired
 	private CommentRepository commentRepository;
+
+	@Autowired
+	IUserService userService;
 
 	@RequestMapping(value = "/addBoard.do", method = RequestMethod.POST)
 	public String fileup(Board board, HttpSession session)
@@ -78,47 +83,41 @@ public class BoardController {
 				break;
 			}
 		}
-
 		
 		if (boardRepository.count() == 0) {
 			board.setId(1);
 		} else {
 			board.setId((int) boardRepository.count() + 1);
 		}
-
-//		File convertfile = new File("/Users/jeong-yeong-gil/Documents/stswork/Blog/src/main/resources/static/image/"
-//				+ file.getOriginalFilename());
-
-//		File convertfile = new File(session.getServletContext().getRealPath("/image/")
-//		+ file.getOriginalFilename());
-
-//		convertfile.createNewFile();
-//
-//		try (FileOutputStream fout = new FileOutputStream(convertfile)) {
-//			fout.write(file.getBytes());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		board.setImage("/image/" + file.getOriginalFilename());
+		
 		boardRepository.save(board);
 		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/findAllBoard", method = RequestMethod.GET)
-	public String findAllBoard(Model model) {
+	public String findAllBoard(Model model, HttpSession httpSession) {
 		model.addAttribute("board", boardRepository.findAll());
+		User user = new User();
+		user.setUsername(httpSession.getAttribute("login").toString());
+		model.addAttribute("user", userService.findUser(user));
 		return "blog/main";
 	}
 
 	@RequestMapping(value = "/single/{id}", method = RequestMethod.GET)
-	public String single(Model model, @PathVariable int id) {
+	public String single(Model model, @PathVariable int id, HttpSession httpSession) {
 		model.addAttribute("board", boardRepository.findById(id).get());
 		model.addAttribute("comment", commentRepository.findByBoardid(id));
+		User user = new User();
+		user.setUsername(httpSession.getAttribute("login").toString());
+		model.addAttribute("user", userService.findUser(user));
 		return "blog/blog-post";
 	}
 
 	@RequestMapping(value = "/BoardWriting", method = RequestMethod.GET)
-	public String boardadd() {
+	public String boardadd(Model model, HttpSession httpSession) {
+		User user = new User();
+		user.setUsername(httpSession.getAttribute("login").toString());
+		model.addAttribute("user", userService.findUser(user));
 		return "blog/blog-write";
 	}
 }

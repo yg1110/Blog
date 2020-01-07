@@ -31,4 +31,8 @@ public class UserDao {
 	public void insertAuth(Auth auth) {
 		sqlSession.insert(ns+"insertAuth", auth);
 	}
+
+	public void updateUser(User user) {
+		sqlSession.update(ns+"updateUser", user);
+	}
 }

@@ -8,14 +8,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="findUser" parameterType="com.boot.dto.User" resultType="com.boot.dto.User">
-		SELECT * FROM USER WHERE ID = #{username} AND PWD = #{password}
+		SELECT * FROM USER WHERE USERNAME = #{username};
 	</select>
 	
 	<insert id="insertUser" parameterType="com.boot.dto.User">
-		INSERT INTO USER(ID, ENABLED, PASSWORD, USERNAME) VALUES(#{id}, 1, #{password}, #{username})
+		INSERT INTO USER(ID, ENABLED, PASSWORD, USERNAME, PHONE, INTRODUCTION, IMAGE) VALUES(#{id}, 1, #{password}, #{blog.username}, #{phone}, #{introduction}, #{image})
 	</insert>
 	
 	<insert id="insertAuth" parameterType="com.boot.dto.Auth">
 		INSERT INTO AUTHORITIES_USERS(USUARIO_ID, AUTHORITY_ID) VALUES(#{usuario_id},#{authority_id})
 	</insert>
+	
+	<update id="updateUser" parameterType="com.boot.dto.User">
+		UPDATE user SET password = #{password}, phone = #{phone}, introduction = #{introduction}, image = #{image} WHERE username = #{username};
+	</update>
 </mapper>

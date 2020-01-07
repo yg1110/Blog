@@ -10,4 +10,5 @@ public interface IUserService {
 	User findUser(User user);
 	void insertUser(User user);
 	void insertAuth(Auth auth);
+	void updateUser(User user);
 }

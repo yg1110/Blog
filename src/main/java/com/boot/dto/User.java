@@ -15,6 +15,10 @@ import javax.persistence.ManyToMany;
 @Entity
 public class User {
 
+	public User() {
+		super();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -24,6 +28,15 @@ public class User {
 
 	@Column
 	private String password;
+
+	@Column
+	private String image;
+
+	@Column
+	private String phone;
+	
+	@Column
+	private String introduction;
 
 	@Column
 	private boolean enabled;
@@ -72,8 +85,35 @@ public class User {
 		this.authority = authority;
 	}
 	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", image=" + image + ", phone="
+				+ phone + ", introduction=" + introduction + ", enabled=" + enabled + ", authority=" + authority + "]";
 	}
+	
+
 }

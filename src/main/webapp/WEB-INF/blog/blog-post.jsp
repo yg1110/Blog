@@ -47,13 +47,12 @@
 			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
 					<img class="profile-image mb-3 rounded-circle mx-auto"
-						src="../image/noprofile.png" alt="image">
+						src="${user.image}" alt="image">
 
 					<div class="bio mb-3">
-						<b>안녕하세요 저는 정영길입니다.<br> 이 블로그는 SpringBoot, MySQL,
-							MongoDB, Redis로 제작되었습니다.<br>
+						<b>${user.introduction}<br>
 							<div class="my-2 my-md-3">
-								<a class="btn btn-link" href="#">내 프로필 수정하기</a>
+								<a class="btn btn-link" href="/profile">내 프로필 수정하기</a>
 							</div>
 					</div>
 					<ul class="social-list list-inline py-3 mx-auto">
@@ -83,7 +82,7 @@
 				</ul>
 
 				<div class="my-2 my-md-3">
-					<a class="btn btn-primary" href="#">글쓰기</a>
+					<a class="btn btn-primary" href="/BoardWriting">글쓰기</a>
 				</div>
 			</div>
 		</nav>

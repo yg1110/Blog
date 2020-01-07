@@ -24,7 +24,7 @@
 <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
 <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>
-	<!-- <script  type="text/javascript">
+<!-- <script  type="text/javascript">
 		window.onload = function() {
 			var btn = document.getElementById('btnSave');
 			btn.onclick = function(){
@@ -57,13 +57,12 @@
 			<div id="navigation" class="collapse navbar-collapse flex-column">
 				<div class="profile-section pt-3 pt-lg-0">
 					<img class="profile-image mb-3 rounded-circle mx-auto"
-						src="../image/noprofile.png" alt="image">
+						src="${user.image}" alt="image">
 
 					<div class="bio mb-3">
-						<b>안녕하세요 저는 정영길입니다.<br> 이 블로그는 SpringBoot, MySQL,
-							MongoDB, Redis로 제작되었습니다.<br>
+						<b>${user.introduction}<br>
 							<div class="my-2 my-md-3">
-								<a class="btn btn-link" href="#">내 프로필 수정하기</a>
+								<a class="btn btn-link" href="/profile">내 프로필 수정하기</a>
 							</div>
 					</div>
 					<ul class="social-list list-inline py-3 mx-auto">
@@ -93,14 +92,20 @@
 				</ul>
 
 				<div class="my-2 my-md-3">
-					<a class="btn btn-primary" href="#">글쓰기</a>
+					<a class="btn btn-primary" href="/BoardWriting">글쓰기</a>
 				</div>
 			</div>
 		</nav>
 	</header>
 
 	<div class="main-wrapper">
-		<article class="blog-post px-3 py-5 p-md-5">
+		<section class="cta-section theme-bg-light py-5">
+			<div class="container text-center">
+				<h2 class="heading">게시글 추가</h2>
+			</div>
+		</section>
+		<br>
+		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
 				<form name="form" id="form" role="form" method="post"
 					action="/addBoard.do">
@@ -131,11 +136,18 @@
 							style="float: right" value="저장">
 					</div>
 				</form>
-
 			</div>
-		</article>
-	</div>
+		</section>
+		<br><br><br>
+		<footer class="footer text-center py-2 theme-bg-dark">
+			<small class="copyright">Designed with <i
+				class="fas fa-heart" style="color: #fb866a;"></i> by <a
+				href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying
+					Riley</a> for developers
+			</small>
+		</footer>
 
+	</div>
 	<script src="../assets/plugins/jquery-3.3.1.min.js"></script>
 	<script src="../assets/plugins/popper.min.js"></script>
 	<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>

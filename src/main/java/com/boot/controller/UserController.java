@@ -1,15 +1,22 @@
 package com.boot.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.Repository.AccountRepository;
 import com.boot.Repository.BoardRepository;
@@ -25,27 +32,30 @@ public class UserController {
 
 	@Autowired
 	SessionRepository repository;
-	
+
 	@Autowired
 	StringRedisTemplate reidstemplate;
-		
+
 	@Autowired
 	AccountRepository accountRepository;
-	
+
 	@Autowired
 	PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	BoardRepository boardRepository;
-	
-	@RequestMapping(value="/", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model, HttpSession httpSession) {
-		if(httpSession.getAttribute("login")!=null) {
+		if (httpSession.getAttribute("login") != null) {
 //			System.out.println(httpSession.getAttribute("login"));
 			model.addAttribute("board", boardRepository.findAll());
+			User user = new User();
+			user.setUsername(httpSession.getAttribute("login").toString());
+			model.addAttribute("user", userService.findUser(user));
+
 			return "blog/blog-list";
-		}
-		else {
+		} else {
 			return "blog/login";
 		}
 
@@ -64,39 +74,94 @@ public class UserController {
 //			return "blog/index";
 //		}
 	}
-	
-	@RequestMapping(value="/login", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Model model) {
 		return "blog/login";
 	}
 
-	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public String list(Model model) {
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public String list(Model model, HttpSession httpSession) {
 		model.addAttribute("board", boardRepository.findAll());
+		User user = new User();
+		user.setUsername(httpSession.getAttribute("login").toString());
+		model.addAttribute("user", userService.findUser(user));
+
 		return "blog/blog-list";
 	}
-	
-	@RequestMapping(value="/signup", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
 	public String signup() {
-		return "blog'/signup";
+		return "blog/signup";
 	}
-	
-	@RequestMapping(value="/regi", method=RequestMethod.POST)
-	public String regi(Model model, User user) {
+
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	public String profile(Model model, HttpSession httpSession) {
+		User user = new User();
+		user.setUsername(httpSession.getAttribute("login").toString());
+		model.addAttribute("user", userService.findUser(user));
+		return "blog/blog-profile";
+	}
+
+	@RequestMapping(value = "/regi", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String regi(Model model, @RequestParam("file") MultipartFile file, User user) throws IOException {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		
-		if((long)userService.getUserList().size() == 0) {
-			user.setId((long)1);
-		}
-		else {
-			user.setId((long)userService.getUserList().size() + 1);
+
+		if ((long) userService.getUserList().size() == 0) {
+			user.setId((long) 1);
+		} else {
+			user.setId((long) userService.getUserList().size() + 1);
 		}
 		Auth auth = new Auth();
-		auth.setAuthority_id((long)2);
-		auth.setUsuario_id((long)user.getId());
+		auth.setAuthority_id((long) 2);
+		auth.setUsuario_id((long) user.getId());
+
+		File convertfile = new File("/Users/jeong-yeong-gil/Documents/stswork/Blog/src/main/resources/static/image/"
+				+ file.getOriginalFilename());
+
+		convertfile.createNewFile();
+
+		try (FileOutputStream fout = new FileOutputStream(convertfile)) {
+			fout.write(file.getBytes());
+			user.setImage("/image/" + file.getOriginalFilename());
+		} catch (Exception e) {
+			user.setImage("../image/noprofile.png");
+			e.printStackTrace();
+		}
+
+		if (user.getIntroduction() == null) {
+			user.setIntroduction("자기소개를 작성하지 않았습니다.");
+		}
+
 		userService.insertUser(user);
 		userService.insertAuth(auth);
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/pro.do", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String pro(Model model, User user, @RequestParam("file") MultipartFile file) throws IOException {
+		user.setPhone(user.getPhone().replace(",", "-"));
+		
+		if(file.isEmpty()) {
+			user.setImage("../image/noprofile.png");
+		}
+		else {			
+			File convertfile = new File("/Users/jeong-yeong-gil/Documents/stswork/Blog/src/main/resources/static/image/"
+					+ file.getOriginalFilename());
+			
+			convertfile.createNewFile();
+			
+			try (FileOutputStream fout = new FileOutputStream(convertfile)) {
+				fout.write(file.getBytes());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			user.setImage("/image/" + file.getOriginalFilename());
+		}
+		
+		userService.updateUser(user);
+		System.out.println(user);
 		return "redirect:/";
 	}
 }
