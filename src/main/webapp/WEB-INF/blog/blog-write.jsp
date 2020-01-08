@@ -22,7 +22,7 @@
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
 <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
-<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
+<script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>
 <!-- <script  type="text/javascript">
 		window.onload = function() {

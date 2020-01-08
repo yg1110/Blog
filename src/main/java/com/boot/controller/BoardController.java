@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.boot.Repository.BoardRepository;
-import com.boot.Repository.CommentRepository;
 import com.boot.dto.Board;
 import com.boot.dto.User;
 import com.boot.service.IUserService;
@@ -28,9 +27,6 @@ public class BoardController {
 	
 	@Autowired
 	private BoardRepository boardRepository;
-
-	@Autowired
-	private CommentRepository commentRepository;
 
 	@Autowired
 	IUserService userService;
@@ -106,7 +102,6 @@ public class BoardController {
 	@RequestMapping(value = "/single/{id}", method = RequestMethod.GET)
 	public String single(Model model, @PathVariable int id, HttpSession httpSession) {
 		model.addAttribute("board", boardRepository.findById(id).get());
-		model.addAttribute("comment", commentRepository.findByBoardid(id));
 		User user = new User();
 		user.setUsername(httpSession.getAttribute("login").toString());
 		model.addAttribute("user", userService.findUser(user));
@@ -120,4 +115,5 @@ public class BoardController {
 		model.addAttribute("user", userService.findUser(user));
 		return "blog/blog-write";
 	}
+	
 }

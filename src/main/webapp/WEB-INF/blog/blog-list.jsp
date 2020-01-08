@@ -13,18 +13,19 @@
 <meta name="description" content="Blog Template">
 <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
 <link rel="shortcut icon" href="favicon.ico">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
 	integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
 	crossorigin="anonymous"></script>
 
-<link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+<link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
 
 </head>
 
 <body>
-
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
 			<a href="/">YG1110 Blog</a>
@@ -44,10 +45,10 @@
 						src="${user.image}" alt="image">
 
 					<div class="bio mb-3">
-						<b>${user.introduction}<br>
-							<div class="my-2 my-md-3">
-								<a class="btn btn-link" href="/profile">내 프로필 수정하기</a>
-							</div>
+						<b>${user.introduction}</b><br>
+						<div class="my-2 my-md-3">
+							<a class="btn btn-link" href="/profile">내 프로필 수정하기</a>
+						</div>
 					</div>
 					<ul class="social-list list-inline py-3 mx-auto">
 						<li class="list-inline-item"><a href="#"><i
@@ -66,9 +67,9 @@
 				</div>
 
 				<ul class="navbar-nav flex-column text-left">
-					<li class="nav-item active"><a class="nav-link"
-						href="/"><i class="fas fa-home fa-fw mr-2"></i>Blog
-							Home <span class="sr-only">(current)</span></a></li>
+					<li class="nav-item active"><a class="nav-link" href="/"><i
+							class="fas fa-home fa-fw mr-2"></i>Blog Home <span
+							class="sr-only">(current)</span></a></li>
 					<li class="nav-item"><a class="nav-link" href="#"><i
 							class="fas fa-bookmark fa-fw mr-2"></i>Blog Post</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"><i
@@ -99,25 +100,32 @@
 		</section>
 		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
-				<c:forEach var="b" items="${board}">
-					<div class="item mb-5">
-						<div class="media">
-							<img class="mr-3 img-fluid post-thumb d-none d-md-flex"
-								src="${b.image}" alt="image">
-							<div class="media-body">
-								<h3 class="title mb-1">
-									<a href="/single/${b.id}">${b.title}</a>
-								</h3>
-								<div class="meta mb-1">
-									<span class="date">${b.date}</span> <span class="time">${b.category}</span>
+				<div id="boardcontain">
+					<c:forEach var="b" items="${board}">
+						<div class="item mb-5">
+							<div class="media">
+								<img class="mr-3 img-fluid post-thumb d-none d-md-flex"
+									src="${b.image}" alt="image">
+								<div class="media-body">
+									<h3 class="title mb-1">
+										<a href="/single/${b.id}">${b.title}</a>
+									</h3>
+									<div class="meta mb-1">
+										<span class="date">${b.date}</span> <span class="time">${b.category}</span>
+									</div>
+									<div class="intro">${b.description}</div>
+									<a class="more-link" href="/single/${b.id}">Read more
+										&rarr;</a>
 								</div>
-								<div class="intro">${b.description}</div>
-								<a class="more-link" href="/single/${b.id}">Read more &rarr;</a>
+								<button onclick="deleteboard(${b.id})"
+									style="border: none; background-color: white;">
+									<img alt="X" src="http://kmemorial.org/images/button/close.png"
+										height="20" width="20">
+								</button>
 							</div>
-							<img alt="X" src="http://kmemorial.org/images/button/close.png" height="20" width="20">
 						</div>
-					</div>
-				</c:forEach>
+					</c:forEach>
+				</div>
 				<nav class="blog-nav nav nav-justified my-5">
 					<a class="nav-link-prev nav-item nav-link d-none rounded-left"
 						href="#">Previous<i
@@ -126,21 +134,16 @@
 						href="blog-list.html">Next<i
 						class="arrow-next fas fa-long-arrow-alt-right"></i></a>
 				</nav>
-
 			</div>
 		</section>
 
 		<footer class="footer text-center py-2 theme-bg-dark">
-
-			<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
-			<small class="copyright">Designed with <i
+			<small class="copyright"> Designed with <i
 				class="fas fa-heart" style="color: #fb866a;"></i> by <a
-				href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying
-					Riley</a> for developers
+				href="http://themes.3rdwavemedia.com" target="_blank">YG1110</a> for
+				developers
 			</small>
-
 		</footer>
-
 	</div>
 	<!--//main-wrapper-->
 
@@ -179,17 +182,68 @@
 	</div>
 	<!--//configure-panel-->
 
-
-
 	<!-- Javascript -->
-	<script src="assets/plugins/jquery-3.3.1.min.js"></script>
-	<script src="assets/plugins/popper.min.js"></script>
-	<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="../assets/plugins/jquery-3.3.1.min.js"></script>
+	<script src="../assets/plugins/popper.min.js"></script>
+	<script src="../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 
 	<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
-	<script src="assets/js/demo/style-switcher.js"></script>
+	<script src="../assets/js/demo/style-switcher.js"></script>
 
+	<script type="text/javascript">
+		/* $(document).ready(function() {
+			$('#deletebutton').click(function(){				
+				$.ajax({
+					type : "GET",
+					url : "/test",
+					dataType : "text",
+					error : function() {
+						alert('통신실패!!');
+					},
+					success : function(data) {
+						alert(data);
+					}
+	
+				});
+			})
+		}); */
+		function deleteboard(id){
+			var chk = confirm(id + "번 게시물을 정말 삭제하시겠습니까?");
+			if (chk) {
+				$.ajax({
+					type : "GET",
+					url : "/deleteboard/"+id,
+					dataType : "json",
+					error : function() {
+						alert('통신실패!!');
+					},
+					success : function(data) {
+						$("#boardcontain").empty();
 
+						$.each(data, function(idx, val) {
+							$("#boardcontain").append('<div class="item mb-5" id="item' + idx + '">');
+							$("#item" + idx).append('<div class="media" id="media' + idx + '">');
+							$("#media" + idx).append('<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="' + val.image + '" alt="image">');
+							$("#media" + idx).append('<div class="media-body" id="media-body' + idx + '">');
+							$("#media-body" + idx).append('<h3 class="title mb-1" id="title' + idx + '">');
+							$("#title" + idx).append('<a href="/single/' + val.id + '">' + val.title + '</a>');
+ 							$("#media-body" + idx).append('<div class="meta mb-1" id="meta' + idx + '">');
+							$("#meta" + idx).append('<span class="date">' + val.date + '</span> <span class="time">' + val.category + '</span>');
+							$("#meta" + idx).append('<div class="intro">' + val.description + '</div>');
+							$("#media-body" + idx).append('<a class="more-link" href="/single/' + val.id + '">Read more </a>');
+							$("#media-body" + idx).append('<button onclick="deleteboard(' + val.id + ')" style="border: none; background-color:white; id="deletebutton"' + idx + '>');
+							$("#deletebutton" + idx).append('<img alt="X" src="http://kmemorial.org/images/button/close.png" height="20" width="20">');
+							console.log(idx + " " + val.title);
+						});
+						
+					}
+				});
+			}
+			else{
+				alert("삭제불가");
+			}
+		}
+	</script>
 </body>
 </html>
 
