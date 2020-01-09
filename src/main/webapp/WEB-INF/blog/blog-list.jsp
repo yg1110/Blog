@@ -91,10 +91,10 @@
 				<form class="signup-form form-inline justify-content-center pt-3">
 					<div class="form-group">
 						<label class="sr-only" for="semail">게시글 / 카테고리</label> <input
-							type="text" id="semail" name="semail1"
+							type="text" id="searchinfo" name="searchinfo"
 							class="form-control mr-md-1 semail" placeholder="게시글 / 카테고리">
 					</div>
-					<button type="submit" class="btn btn-primary">검색하기</button>
+					<!-- <input type="button" class="btn btn-primary" onclick="search()" value="검색하기"> -->
 				</form>
 			</div>
 		</section>
@@ -231,7 +231,7 @@
 							$("#meta" + idx).append('<span class="date">' + val.date + '</span> <span class="time">' + val.category + '</span>');
 							$("#meta" + idx).append('<div class="intro">' + val.description + '</div>');
 							$("#media-body" + idx).append('<a class="more-link" href="/single/' + val.id + '">Read more </a>');
-							$("#media-body" + idx).append('<button onclick="deleteboard(' + val.id + ')" style="border: none; background-color:white; id="deletebutton"' + idx + '>');
+							$("#media" + idx).append('<button onclick="deleteboard(' + val.id + ')" style="border: none; background-color:white;" id="deletebutton' + idx + '">');
 							$("#deletebutton" + idx).append('<img alt="X" src="http://kmemorial.org/images/button/close.png" height="20" width="20">');
 							console.log(idx + " " + val.title);
 						});
@@ -243,7 +243,41 @@
 				alert("삭제불가");
 			}
 		}
-	</script>
+		
+		$(document).ready(function() {
+			$('#searchinfo').keyup(function(){
+				console.log($("#searchinfo").val());
+				if($("#searchinfo").val().length != 0){
+					$.ajax({
+						type : "GET",
+						url : "/search/"+$("#searchinfo").val(),
+						dataType : "json",
+						error : function() {
+						},
+						success : function(data) {
+							$("#boardcontain").empty();
+	
+							$.each(data, function(idx, val) {
+								$("#boardcontain").append('<div class="item mb-5" id="item' + idx + '">');
+								$("#item" + idx).append('<div class="media" id="media' + idx + '">');
+								$("#media" + idx).append('<img class="mr-3 img-fluid post-thumb d-none d-md-flex" src="' + val.image + '" alt="image">');
+								$("#media" + idx).append('<div class="media-body" id="media-body' + idx + '">');
+								$("#media-body" + idx).append('<h3 class="title mb-1" id="title' + idx + '">');
+								$("#title" + idx).append('<a href="/single/' + val.id + '">' + val.title + '</a>');
+	 							$("#media-body" + idx).append('<div class="meta mb-1" id="meta' + idx + '">');
+								$("#meta" + idx).append('<span class="date">' + val.date + '</span> <span class="time">' + val.category + '</span>');
+								$("#meta" + idx).append('<div class="intro">' + val.description + '</div>');
+								$("#media-body" + idx).append('<a class="more-link" href="/single/' + val.id + '">Read more </a>');
+								$("#media" + idx).append('<button onclick="deleteboard(' + val.id + ')" style="border: none; background-color:white" id="deletebutton' + idx + '">');
+								$("#deletebutton" + idx).append('<img alt="X" src="http://kmemorial.org/images/button/close.png" height="20" width="20">');
+								console.log(idx + " " + val.title);
+							});
+						}
+					});
+				}
+			});
+		});
+</script>
 </body>
 </html>
 

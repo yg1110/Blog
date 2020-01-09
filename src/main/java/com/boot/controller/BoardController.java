@@ -83,7 +83,11 @@ public class BoardController {
 		if (boardRepository.count() == 0) {
 			board.setId(1);
 		} else {
-			board.setId((int) boardRepository.count() + 1);
+			int size = (int) (boardRepository.count()+1);
+			while(boardRepository.existsById(size)) {
+				size++;
+			}
+			board.setId(size);
 		}
 		
 		boardRepository.save(board);
