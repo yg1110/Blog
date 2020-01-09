@@ -102,15 +102,6 @@
 				<div class="blog-post-body">
 					<p>${board.content}</p>
 
-				<nav class="blog-nav nav nav-justified my-5">
-					<a class="nav-link-prev nav-item nav-link rounded-left"
-						href="index.html">Previous<i
-						class="arrow-prev fas fa-long-arrow-alt-left"></i></a> <a
-						class="nav-link-next nav-item nav-link rounded-right"
-						href="blog-list.html">Next<i
-						class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-				</nav>
-
 					<script id="cosmosfarm-comments-script" type="text/javascript"
 						src="https://plugin.cosmosfarm.com/comments.js"></script>
 					<div id="cosmosfarm-comments" data-plugin-id="1016820529475808"

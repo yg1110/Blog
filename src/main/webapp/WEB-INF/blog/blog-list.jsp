@@ -101,7 +101,7 @@
 		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
 				<div id="boardcontain">
-					<c:forEach var="b" items="${board}">
+					<c:forEach var="b" items="${board.content}">
 						<div class="item mb-5">
 							<div class="media">
 								<img class="mr-3 img-fluid post-thumb d-none d-md-flex"
@@ -125,15 +125,20 @@
 							</div>
 						</div>
 					</c:forEach>
+						<nav class="blog-nav nav nav-justified my-5">
+							<c:if test="${!board.first}">
+								<a class="nav-link-prev nav-item nav-link rounded-left" href="?page=${board.number-1}">Previous
+									<i class="arrow-prev fas fa-long-arrow-alt-left"></i>
+								</a>
+							</c:if>
+							<c:if test="${!board.last}">
+								<a class="nav-link-next nav-item nav-link rounded" href="?page=${board.number+1}">Next
+									<i class="arrow-next fas fa-long-arrow-alt-right"></i>
+								</a>
+							</c:if>
+						</nav>				
 				</div>
-				<nav class="blog-nav nav nav-justified my-5">
-					<a class="nav-link-prev nav-item nav-link d-none rounded-left"
-						href="#">Previous<i
-						class="arrow-prev fas fa-long-arrow-alt-left"></i></a> <a
-						class="nav-link-next nav-item nav-link rounded"
-						href="blog-list.html">Next<i
-						class="arrow-next fas fa-long-arrow-alt-right"></i></a>
-				</nav>
+
 			</div>
 		</section>
 

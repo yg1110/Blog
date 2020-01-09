@@ -7,7 +7,10 @@ import java.io.IOException;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,10 +49,10 @@ public class UserController {
 	BoardRepository boardRepository;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String welcome(Model model, HttpSession httpSession) {
+	public String welcome(Model model, HttpSession httpSession, @PageableDefault(sort = { "id" }, direction = Direction.DESC, size = 4) Pageable page) {
 		if (httpSession.getAttribute("login") != null) {
 //			System.out.println(httpSession.getAttribute("login"));
-			model.addAttribute("board", boardRepository.findAll());
+			model.addAttribute("board", boardRepository.findAll(page));
 			User user = new User();
 			user.setUsername(httpSession.getAttribute("login").toString());
 			model.addAttribute("user", userService.findUser(user));
@@ -81,8 +84,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model, HttpSession httpSession) {
-		model.addAttribute("board", boardRepository.findAll());
+	public String list(Model model, HttpSession httpSession, @PageableDefault(sort = { "id" }, direction = Direction.DESC, size = 4) Pageable page) {
+		model.addAttribute("board", boardRepository.findAll(page));
 		User user = new User();
 		user.setUsername(httpSession.getAttribute("login").toString());
 		model.addAttribute("user", userService.findUser(user));

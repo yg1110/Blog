@@ -118,6 +118,5 @@ public class BoardController {
 		user.setUsername(httpSession.getAttribute("login").toString());
 		model.addAttribute("user", userService.findUser(user));
 		return "blog/blog-write";
-	}
-	
+	}	
 }
