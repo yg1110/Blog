@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -26,34 +27,52 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<a href="index.html">Y-BLOG</a>
 		</h1>
 		<div class="login-bottom">
-			<h2>Login</h2>
 			<form action="/login" method="post">
 				<sec:csrfInput />
 				<div class="col-md-12">
+					<label>아이디</label>
 					<div class="login-mail">
-						<input type="text" placeholder="Email" required="" name="username">
-						<i class="fa fa-envelope"></i>
+						<input type="text" required="" name="username"> <i
+							class="fa fa-envelope"></i>
 					</div>
+					<label>비밀번호</label>
 					<div class="login-mail">
-						<input type="password" placeholder="Password" required=""
-							name="password"> <i class="fa fa-lock"></i>
+						<input type="password" required="" name="password"> <i
+							class="fa fa-lock"></i>
 					</div>
 
-					<a class="news-letter" href="#"> <label class="checkbox1">
-							<input type="checkbox" name="checkbox"> <i></i>Forget
-							Password
-					</label>
-					</a>
 					<div class="col-md-12 login-do">
 						<label class="hvr-shutter-in-horizontal login-sub"> <input
-							type="submit" value="login">
-						</label> <a href="/signup"><p>Do not have an account?</p></a>
+							type="submit" value="로그인">
+						</label> <a href="/signup"><p>회원가입</p></a>
+						<a href="#" data-toggle="modal" data-target="#myModal"><p>아이디 / 비밀번호 찾기</p></a>
 					</div>
 				</div>
 				<div class="clearfix"></div>
 			</form>
 		</div>
 	</div>
+
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">×</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<p>Some text in the modal.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<div class="copy-right">
 		<p>&copy; 2019 yg1110. All Rights Reserved.</p>
 	</div>

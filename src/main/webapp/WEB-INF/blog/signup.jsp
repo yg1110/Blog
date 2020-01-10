@@ -28,27 +28,42 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			<a href="index.html">Y-BLOG</a>
 		</h1>
 		<div class="login-bottom">
-			<h2>Register</h2>
 			<form action="/regi" method="post">
-				
+				<sec:csrfInput />
 
 				<div class="col-md-12">
+					<label>아이디</label>
 					<div class="login-mail">
-						<input type="text" placeholder="Email" required="" name="username">
-						<i class="fa fa-envelope"></i>
+						<input type="text" required="" name="username"> <i
+							class="fa fa-envelope"></i>
 					</div>
+					<label>비밀번호</label>
 					<div class="login-mail">
-						<input type="password" placeholder="Password" required=""
-							name="password"> <i class="fa fa-lock"></i>
+						<input type="password" required="" name="password"> <i
+							class="fa fa-lock"></i>
 					</div>
+					<label>비밀번호 확인</label>
 					<div class="login-mail">
-						<input type="password" placeholder="Repeated Password" required="">
-						<i class="fa fa-lock"></i>
+						<input type="password" required=""> <i class="fa fa-lock"></i>
+					</div>
+					<label>이름</label>
+					<div class="login-mail">
+						<input type="text" required="" name="name">
+					</div>
+
+					<label>휴대전화</label>
+					<div class="login-mail2">
+						<input type="number" placeholder="숫자만 입력해주세요." required=""
+							name="phone"> <input type="button"
+							class="btn btn-success" value="인증번호받기">
+					</div>
+
+					<div class="login-mail">
+						<input type="text" placeholder="인증번호를 입력해주세요">
 					</div>
 					<input type="hidden" value="2" name="auth"> <a
 						class="news-letter" href="#"> <label class="checkbox1">
-							<input type="checkbox" name="checkbox"> <i></i>I agree
-							with the terms
+							<input type="checkbox" name="checkbox"> <i></i> 이용약관 동의
 					</label>
 					</a>
 					<div class="col-md-12 login-do">

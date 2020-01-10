@@ -94,15 +94,6 @@ public class BoardController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/findAllBoard", method = RequestMethod.GET)
-	public String findAllBoard(Model model, HttpSession httpSession) {
-		model.addAttribute("board", boardRepository.findAll());
-		User user = new User();
-		user.setUsername(httpSession.getAttribute("login").toString());
-		model.addAttribute("user", userService.findUser(user));
-		return "blog/main";
-	}
-
 	@RequestMapping(value = "/single/{id}", method = RequestMethod.GET)
 	public String single(Model model, @PathVariable int id, HttpSession httpSession) {
 		model.addAttribute("board", boardRepository.findById(id).get());
@@ -118,5 +109,67 @@ public class BoardController {
 		user.setUsername(httpSession.getAttribute("login").toString());
 		model.addAttribute("user", userService.findUser(user));
 		return "blog/blog-write";
-	}	
+	}
+	
+	@RequestMapping(value = "/updateboard/{id}", method = RequestMethod.GET)
+	public String updateboard(Model model, @PathVariable int id, HttpSession httpSession) {
+		User user = new User();
+		user.setUsername(httpSession.getAttribute("login").toString());
+		model.addAttribute("user", userService.findUser(user));
+		
+		model.addAttribute("board", boardRepository.findById(id).get());
+		log.info(boardRepository.findById(id)+"");
+		return "blog/blog-update";
+	}
+	
+	@RequestMapping(value = "/updateBoard.do", method = RequestMethod.POST)
+	public String updateBoard(Model model, Board board) {
+		log.info("board : " + board +"");
+		Board updateBoard = boardRepository.findById(board.getId()).get();
+		updateBoard.setTitle(board.getTitle());
+		updateBoard.setCategory(board.getCategory());
+		updateBoard.setContent(board.getContent());
+		
+		int start = board.getContent().indexOf("src");
+		int end = board.getContent().indexOf(" /></p>");
+
+		if(start != -1) {
+			String word = updateBoard.getContent().substring(start+5, end-1);
+			updateBoard.setImage(word);
+		}
+		else {
+			updateBoard.setImage("image/noimg.gif");
+		}
+		
+		int index1 = 0;
+		int index2 = 0;
+		while(true) {
+			start = updateBoard.getContent().indexOf("<p>", index1);
+			end = updateBoard.getContent().indexOf("</p>", index2);
+			
+			if(start != -1) {
+				String word = updateBoard.getContent().substring(start+3, end);
+				if(word.contains("src")) {
+					index1 = start + 1;
+					index2 = end + 1;
+				}
+				else {					
+					if(word.length()>20) {				
+						board.setDescription(word.substring(0, 19));
+					}
+					else {
+						board.setDescription(word);
+					}
+					break;
+				}
+			}
+			else {
+				board.setDescription("내용없음");
+				break;
+			}
+		}
+
+		boardRepository.save(updateBoard);
+		return "redirect:/";
+	}
 }

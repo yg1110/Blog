@@ -6,6 +6,8 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -30,6 +32,8 @@ import com.boot.service.IUserService;
 
 @Controller
 public class UserController {
+	private final Logger log = LoggerFactory.getLogger(BoardController.class);
+
 	@Autowired
 	IUserService userService;
 
@@ -106,8 +110,9 @@ public class UserController {
 		return "blog/blog-profile";
 	}
 
-	@RequestMapping(value = "/regi", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String regi(Model model, @RequestParam("file") MultipartFile file, User user) throws IOException {
+	@RequestMapping(value = "/regi", method = RequestMethod.POST)
+	public String regi(User user) throws IOException {
+		log.info("user : " + user);
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
 		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
@@ -119,27 +124,11 @@ public class UserController {
 		Auth auth = new Auth();
 		auth.setAuthority_id((long) 2);
 		auth.setUsuario_id((long) user.getId());
-
-		File convertfile = new File("/Users/jeong-yeong-gil/Documents/stswork/Blog/src/main/resources/static/image/"
-				+ file.getOriginalFilename());
-
-		convertfile.createNewFile();
-
-		try (FileOutputStream fout = new FileOutputStream(convertfile)) {
-			fout.write(file.getBytes());
-			user.setImage("/image/" + file.getOriginalFilename());
-		} catch (Exception e) {
-			user.setImage("../image/noprofile.png");
-			e.printStackTrace();
-		}
-
-		if (user.getIntroduction() == null) {
-			user.setIntroduction("자기소개를 작성하지 않았습니다.");
-		}
-
+		log.info("user : " + user);
+		user.setImage("../image/noprofile.png");
 		userService.insertUser(user);
 		userService.insertAuth(auth);
-		return "redirect:/";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(value = "/pro.do", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -166,5 +155,10 @@ public class UserController {
 		userService.updateUser(user);
 		System.out.println(user);
 		return "redirect:/";
+	}
+	
+	@RequestMapping(value = "/findpassword", method = RequestMethod.GET)
+	public String findpassword() {
+		return "blog/findpassword";
 	}
 }

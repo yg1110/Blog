@@ -1395,6 +1395,23 @@ label.control-label {
     width: 89%;
     font-family: 'Muli-Regular';
 }
+
+.login-mail2{
+	border: 1px solid #E9E9E9;
+	margin-bottom: 2em;
+	padding: 0.5em 1em;
+}
+.login-mail2 i{
+	color: #999;
+}
+.login-mail2 input[type="number"]{
+	border: none;
+	outline:none;
+	font-size: 0.9em;
+    color: #999;
+    width: 70%;
+    font-family: 'Muli-Regular';
+}
 .login-do input[type="submit"]{
 	border: none;
     outline: none;

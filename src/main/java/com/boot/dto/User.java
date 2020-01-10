@@ -17,6 +17,7 @@ public class User {
 
 	public User() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	@Id
@@ -40,6 +41,17 @@ public class User {
 
 	@Column
 	private boolean enabled;
+
+	@Column
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "authorities_users", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "authority_id"))
@@ -112,8 +124,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", username=" + username + ", password=" + password + ", image=" + image + ", phone="
-				+ phone + ", introduction=" + introduction + ", enabled=" + enabled + ", authority=" + authority + "]";
+				+ phone + ", introduction=" + introduction + ", enabled=" + enabled + ", name=" + name + ", authority="
+				+ authority + "]";
 	}
-	
-
 }

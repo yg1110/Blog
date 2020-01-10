@@ -15,6 +15,7 @@
 <link rel="shortcut icon" href="favicon.ico">
 <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
 <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
@@ -84,6 +85,35 @@
 	</header>
 
 	<div class="main-wrapper">
+		<div class="container-fluid">
+		<br>
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navfix">
+						<ul class="nav">
+							<li class="nav-item"><a class="nav-link disabled" href="#">Home</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Profile</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Messages</a>
+							</li>
+							<li class="nav-item dropdown ml-md-auto"><a
+								class="nav-link dropdown-toggle" href="http://example.com"
+								id="navbarDropdownMenuLink" data-toggle="dropdown">메뉴</a>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="/login?logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Separated link</a>
+								</div>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<br>
+		</div>
+		
 		<section class="cta-section theme-bg-light py-5">
 			<div class="container text-center">
 				<h2 class="heading">YG1110 BLOG</h2>
@@ -117,6 +147,10 @@
 									<a class="more-link" href="/single/${b.id}">Read more
 										&rarr;</a>
 								</div>
+								<a href="/updateboard/${b.id}"> <img alt="X"
+									src="http://naraport.ngis.co.kr/images/update.png" height="20"
+									width="20">
+								</a>
 								<button onclick="deleteboard(${b.id})"
 									style="border: none; background-color: white;">
 									<img alt="X" src="http://kmemorial.org/images/button/close.png"
@@ -125,67 +159,25 @@
 							</div>
 						</div>
 					</c:forEach>
-						<nav class="blog-nav nav nav-justified my-5">
-							<c:if test="${!board.first}">
-								<a class="nav-link-prev nav-item nav-link rounded-left" href="?page=${board.number-1}">Previous
-									<i class="arrow-prev fas fa-long-arrow-alt-left"></i>
-								</a>
-							</c:if>
-							<c:if test="${!board.last}">
-								<a class="nav-link-next nav-item nav-link rounded" href="?page=${board.number+1}">Next
-									<i class="arrow-next fas fa-long-arrow-alt-right"></i>
-								</a>
-							</c:if>
-						</nav>				
+					<nav class="blog-nav nav nav-justified my-5">
+						<c:if test="${!board.first}">
+							<a class="nav-link-prev nav-item nav-link rounded-left"
+								href="?page=${board.number-1}">Previous <i
+								class="arrow-prev fas fa-long-arrow-alt-left"></i>
+							</a>
+						</c:if>
+						<c:if test="${!board.last}">
+							<a class="nav-link-next nav-item nav-link rounded"
+								href="?page=${board.number+1}">Next <i
+								class="arrow-next fas fa-long-arrow-alt-right"></i>
+							</a>
+						</c:if>
+					</nav>
 				</div>
-
 			</div>
 		</section>
-
-		<footer class="footer text-center py-2 theme-bg-dark">
-			<small class="copyright"> Designed with <i
-				class="fas fa-heart" style="color: #fb866a;"></i> by <a
-				href="http://themes.3rdwavemedia.com" target="_blank">YG1110</a> for
-				developers
-			</small>
-		</footer>
 	</div>
 	<!--//main-wrapper-->
-
-
-
-
-	<!-- *****CONFIGURE STYLE (REMOVE ON YOUR PRODUCTION SITE)****** -->
-	<div id="config-panel" class="config-panel d-none d-lg-block">
-		<div class="panel-inner">
-			<a id="config-trigger"
-				class="config-trigger config-panel-hide text-center" href="#"><i
-				class="fas fa-cog fa-spin mx-auto" data-fa-transform="down-6"></i></a>
-			<h5 class="panel-title">Choose Colour</h5>
-			<ul id="color-options" class="list-inline mb-0">
-				<li class="theme-1 active list-inline-item"><a
-					data-style="assets/css/theme-1.css" href="#"></a></li>
-				<li class="theme-2  list-inline-item"><a
-					data-style="assets/css/theme-2.css" href="#"></a></li>
-				<li class="theme-3  list-inline-item"><a
-					data-style="assets/css/theme-3.css" href="#"></a></li>
-				<li class="theme-4  list-inline-item"><a
-					data-style="assets/css/theme-4.css" href="#"></a></li>
-				<li class="theme-5  list-inline-item"><a
-					data-style="assets/css/theme-5.css" href="#"></a></li>
-				<li class="theme-6  list-inline-item"><a
-					data-style="assets/css/theme-6.css" href="#"></a></li>
-				<li class="theme-7  list-inline-item"><a
-					data-style="assets/css/theme-7.css" href="#"></a></li>
-				<li class="theme-8  list-inline-item"><a
-					data-style="assets/css/theme-8.css" href="#"></a></li>
-			</ul>
-			<a id="config-close" class="close" href="#"><i
-				class="fa fa-times-circle"></i></a>
-		</div>
-		<!--//panel-inner-->
-	</div>
-	<!--//configure-panel-->
 
 	<!-- Javascript -->
 	<script src="../assets/plugins/jquery-3.3.1.min.js"></script>
@@ -196,22 +188,12 @@
 	<script src="../assets/js/demo/style-switcher.js"></script>
 
 	<script type="text/javascript">
-		/* $(document).ready(function() {
-			$('#deletebutton').click(function(){				
-				$.ajax({
-					type : "GET",
-					url : "/test",
-					dataType : "text",
-					error : function() {
-						alert('통신실패!!');
-					},
-					success : function(data) {
-						alert(data);
-					}
-	
-				});
-			})
-		}); */
+
+		function updateboard(id){
+			var chk = confirm(id + "번 게시물을 정말 수정하시겠습니까?");
+			
+		}
+		
 		function deleteboard(id){
 			var chk = confirm(id + "번 게시물을 정말 삭제하시겠습니까?");
 			if (chk) {
@@ -244,9 +226,6 @@
 					}
 				});
 			}
-			else{
-				alert("삭제불가");
-			}
 		}
 		
 		$(document).ready(function() {
@@ -258,6 +237,7 @@
 						url : "/search/"+$("#searchinfo").val(),
 						dataType : "json",
 						error : function() {
+							alert('통신실패!!');
 						},
 						success : function(data) {
 							$("#boardcontain").empty();

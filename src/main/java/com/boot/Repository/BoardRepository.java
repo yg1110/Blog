@@ -16,5 +16,5 @@ public interface BoardRepository extends MongoRepository<Board, Integer>{
 	
 	@Query("{ 'category' : { '$regex' : ?0 , $options: 'i'}}")
 	List<Board> findByCategory(String category);
-	
+
 }

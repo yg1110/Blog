@@ -197,7 +197,7 @@
 							</div>
 							<!--/col-9-->
 						</div>
-						<input type="submit" value="전송">
+						<input type="submit" class="btn btn-sm btn-primary" style="float: right" value="수정">
 					</form>
 				</div>
 				<!--/row-->
