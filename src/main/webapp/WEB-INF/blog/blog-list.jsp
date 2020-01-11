@@ -29,7 +29,7 @@
 <body>
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
-			<a href="/">YG1110 Blog</a>
+			<a href="/">YG1110 BLOG</a>
 		</h1>
 
 		<nav class="navbar navbar-expand-lg navbar-dark">
@@ -117,7 +117,7 @@
 		<section class="cta-section theme-bg-light py-5">
 			<div class="container text-center">
 				<h2 class="heading">YG1110 BLOG</h2>
-				<div class="intro">환영합니다. 궁금하신 게시글 또는 카테고리를 검색해 보세요</div>
+				<div class="intro">궁금하신 게시글 또는 카테고리를 검색해 보세요.</div>
 				<form class="signup-form form-inline justify-content-center pt-3">
 					<div class="form-group">
 						<label class="sr-only" for="semail">게시글 / 카테고리</label> <input

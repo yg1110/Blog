@@ -39,5 +39,14 @@ public class UserService implements IUserService{
 	public void updateUser(User user) {
 		dao.updateUser(user);
 	}
-	
+
+	@Override
+	public User findpassword(User user) {
+		return dao.findpassword(user);
+	}
+
+	@Override
+	public void updatepassword(User user) {
+		dao.updatepassword(user);
+	}
 }

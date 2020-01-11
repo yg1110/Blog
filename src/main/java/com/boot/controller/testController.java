@@ -2,12 +2,14 @@ package com.boot.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.boot.Repository.BoardRepository;
 import com.boot.dto.Board;
+import com.boot.dto.User;
+import com.boot.service.IUserService;
 
 
 @RestController
 public class testController {
+	
 	@Autowired
 	private BoardRepository boardRepository;
+
+	@Autowired
+	IUserService userService;
 
 	@GetMapping("/deleteboard/{id}")
 	public List<Board> deleteboard(@PathVariable int id, HttpSession httpSession) {
@@ -52,5 +60,32 @@ public class testController {
 	public Page<Board> paging(Pageable page) {
 		Page<Board> postPage = boardRepository.findAll(page);
 		return postPage;
+	}
+	
+	@RequestMapping(value = "/findpasswordPOST")
+	public String findpasswordPOST(User user) {
+		
+		if(userService.findpassword(user)!=null) {
+			Random rnd =new Random();
+			
+			StringBuffer buf = new StringBuffer();
+			
+			for(int i=0;i<20;i++){
+				if(rnd.nextBoolean()){
+					buf.append((char)((int)(rnd.nextInt(26))+97));
+				}else{
+					buf.append((rnd.nextInt(10)));
+				}
+			}
+			User updateuser = userService.findpassword(user);
+			BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder(4);
+			updateuser.setPassword(bCryptPasswordEncoder.encode(buf));
+			userService.updatepassword(updateuser);
+			
+			return buf+"";
+		}
+		else {
+			return null;
+		}
 	}
 }

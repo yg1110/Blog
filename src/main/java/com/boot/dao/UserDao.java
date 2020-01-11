@@ -35,4 +35,12 @@ public class UserDao {
 	public void updateUser(User user) {
 		sqlSession.update(ns+"updateUser", user);
 	}
+
+	public User findpassword(User user) {
+		return sqlSession.selectOne(ns+"findpassword", user);
+	}
+
+	public Object updatepassword(User user) {
+		return sqlSession.update(ns+"updatepassword",user);
+	}
 }

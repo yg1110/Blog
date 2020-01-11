@@ -34,9 +34,6 @@ public class User {
 	private String image;
 
 	@Column
-	private String phone;
-	
-	@Column
 	private String introduction;
 
 	@Column
@@ -44,6 +41,12 @@ public class User {
 
 	@Column
 	private String name;
+
+	@Column
+	private String passwordQ;
+
+	@Column
+	private String passwordA;
 
 	public String getName() {
 		return name;
@@ -105,14 +108,6 @@ public class User {
 		this.image = image;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
 	public String getIntroduction() {
 		return introduction;
 	}
@@ -121,10 +116,25 @@ public class User {
 		this.introduction = introduction;
 	}
 
+	public String getPasswordQ() {
+		return passwordQ;
+	}
+
+	public void setPasswordQ(String passwordQ) {
+		this.passwordQ = passwordQ;
+	}
+
+	public String getPasswordA() {
+		return passwordA;
+	}
+
+	public void setPasswordA(String passwordA) {
+		this.passwordA = passwordA;
+	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", image=" + image + ", phone="
-				+ phone + ", introduction=" + introduction + ", enabled=" + enabled + ", name=" + name + ", authority="
-				+ authority + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", image=" + image + "introduction=" + introduction + ", enabled=" + enabled + ", name=" + name + ", passwordQ="
+				+ passwordQ + ", passwordA=" + passwordA + ", authority=" + authority + "]";
 	}
 }

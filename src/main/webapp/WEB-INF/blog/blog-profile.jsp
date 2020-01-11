@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Blog Template">
 <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-<link rel="shortcut icon" href="favicon.ico">
 
 <script defer
 	src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
@@ -22,35 +22,13 @@
 <link rel="stylesheet"
 	href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.14.2/styles/monokai-sublime.min.css">
 <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
-<script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script defer
 	src="https://use.fontawesome.com/releases/v5.7.1/js/all.js"
 	integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7"
 	crossorigin="anonymous"></script>
 
-<link id="theme-style" rel="stylesheet" href="assets/css/theme-1.css">
+<link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
 
 </head>
 
@@ -125,11 +103,12 @@
 				<div class="container bootstrap snippet">
 					<form action="/pro.do" method="post" enctype="multipart/form-data">
 						<div class="row">
-							<div class="col-sm-3">
+							<div class="col-sm-4">
 								<div class="text-center">
 									<img src="http://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-										class="avatar img-circle img-thumbnail" alt="avatar"> <input
-										type="file" name="file" class="text-center center-block file-upload">
+										class="avatar img-circle img-thumbnail" alt="avatar"> <br>
+									<br> <input type="file" name="file"
+										class="text-center center-block file-upload">
 								</div>
 								<br>
 
@@ -148,38 +127,19 @@
 
 							</div>
 							<!--/col-3-->
-							<div class="col-sm-9">
+							<div class="col-sm-7">
 								<div class="tab-content">
 									<div class="tab-pane active" id="home">
 										<hr>
 										<sec:csrfInput />
-
+										<input type="hidden" value="${user.id}" name="id">
 										<div class="form-group">
 											<div class="col-xs-6">
-												<label for="email"><h4>Email</h4></label> <br> <input
-													type="text" class="form-control" name="username"
-													value='${user.username}' readonly="readonly"
-													style="background: white;">
+												<label for="email">이름</label> <br> <input type="text"
+													class="form-control" name="name" value='${user.name}'
+													readonly="readonly" style="background: white;">
 											</div>
 										</div>
-
-										<div class="form-group">
-											<div class="col-xs-6">
-												<label for="password"><h4>Password</h4></label> <br> <input
-													type="password" class="form-control" name="password"
-													value='${user.password}'>
-											</div>
-										</div>
-
-										<div class="form-group">
-											<div class="col-xs-6">
-												<label for="phone"><h4>Phone</h4></label> <br> <input
-													type="number" placeholder="010" name="phone"> - <input
-													type="number" placeholder="0000" name="phone"> - <input
-													type="number" placeholder="0000" name="phone">
-											</div>
-										</div>
-
 										<div class="form-group">
 											<div class="col-xs-6">
 												<label for="introduction"><h4>introduction</h4></label> <br>
@@ -197,7 +157,8 @@
 							</div>
 							<!--/col-9-->
 						</div>
-						<input type="submit" class="btn btn-sm btn-primary" style="float: right" value="수정">
+						<input type="submit" class="btn btn-sm btn-primary"
+							style="float: right" value="수정">
 					</form>
 				</div>
 				<!--/row-->
@@ -206,7 +167,6 @@
 		<br> <br> <br>
 		<footer class="footer text-center py-2 theme-bg-dark">
 
-			<!--/* This template is released under the Creative Commons Attribution 3.0 License. Please keep the attribution link below when using for your own project. Thank you for your support. :) If you'd like to use the template without the attribution, you can buy the commercial license via our website: themes.3rdwavemedia.com */-->
 			<small class="copyright">Designed with <i
 				class="fas fa-heart" style="color: #fb866a;"></i> by <a
 				href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying

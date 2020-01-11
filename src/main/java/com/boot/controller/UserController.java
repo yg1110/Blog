@@ -133,7 +133,6 @@ public class UserController {
 
 	@RequestMapping(value = "/pro.do", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String pro(Model model, User user, @RequestParam("file") MultipartFile file) throws IOException {
-		user.setPhone(user.getPhone().replace(",", "-"));
 		
 		if(file.isEmpty()) {
 			user.setImage("../image/noprofile.png");
@@ -153,12 +152,11 @@ public class UserController {
 		}
 		
 		userService.updateUser(user);
-		System.out.println(user);
 		return "redirect:/";
 	}
 	
 	@RequestMapping(value = "/findpassword", method = RequestMethod.GET)
-	public String findpassword() {
+	public String findpasswordGET() {
 		return "blog/findpassword";
 	}
 }
