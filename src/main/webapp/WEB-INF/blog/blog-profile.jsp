@@ -92,6 +92,34 @@
 	</header>
 
 	<div class="main-wrapper">
+		<div class="container-fluid">
+			<br>
+			<div class="row">
+				<div class="col-md-12">
+					<nav class="navfix">
+						<ul class="nav">
+							<li class="nav-item"><a class="nav-link" href="#">Home</a>
+							</li>
+							<li class="nav-item"><a class="nav-link disabled" href="#">Profile</a>
+							</li>
+							<li class="nav-item"><a class="nav-link" href="#">Messages</a>
+							</li>
+							<li class="nav-item dropdown ml-md-auto"><a
+								class="nav-link dropdown-toggle" href="http://example.com"
+								id="navbarDropdownMenuLink" data-toggle="dropdown">메뉴</a>
+								<div class="dropdown-menu dropdown-menu-right"
+									aria-labelledby="navbarDropdownMenuLink">
+									<a class="dropdown-item" href="/login?logout">Logout <i
+										class="fas fa-sign-out-alt"></i></a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="#">Separated link</a>
+								</div></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<br>
+		</div>
 		<section class="cta-section theme-bg-light py-5">
 			<div class="container text-center">
 				<h2 class="heading">프로필 수정</h2>
@@ -137,7 +165,7 @@
 											<div class="col-xs-6">
 												<label for="email">이름</label> <br> <input type="text"
 													class="form-control" name="name" value='${user.name}'
-													readonly="readonly" style="background: white;">
+													style="background: white;">
 											</div>
 										</div>
 										<div class="form-group">
@@ -164,17 +192,6 @@
 				<!--/row-->
 			</div>
 		</section>
-		<br> <br> <br>
-		<footer class="footer text-center py-2 theme-bg-dark">
-
-			<small class="copyright">Designed with <i
-				class="fas fa-heart" style="color: #fb866a;"></i> by <a
-				href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying
-					Riley</a> for developers
-			</small>
-
-		</footer>
-
 	</div>
 	<script src="../assets/plugins/jquery-3.3.1.min.js"></script>
 	<script src="../assets/plugins/popper.min.js"></script>

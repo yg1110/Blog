@@ -23,20 +23,6 @@
 <link id="theme-style" rel="stylesheet" href="../assets/css/theme-1.css">
 <script src="//cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
 </head>
-<!-- <script  type="text/javascript">
-		window.onload = function() {
-			var btn = document.getElementById('btnSave');
-			btn.onclick = function(){
-				var tmp = CKEDITOR.instances.content.getData();
-				var val = document.getElementById('test').value = tmp;
-				var tmp2 = document.getElementById('test');
-				var tmp3 = tmp2.getElementsByTagName("img");
-				for(var i=0; i<tmp3.length; i++){
-					alert(tmp3[i].src);
-				}
-			}
-		}
-	</script> -->
 
 <body>
 	<input type="hidden" id="test">
@@ -107,7 +93,7 @@
 		<section class="blog-list px-3 py-5 p-md-5">
 			<div class="container">
 				<form name="form" id="form" role="form" method="post"
-					action="/addBoard.do">
+					action="/addBoard.do" enctype="multipart/form-data">
 					<sec:csrfInput />
 
 					<div class="mb-3">
@@ -129,6 +115,7 @@
 							CKEDITOR.replace('content');
 						</script>
 					</div>
+					<input type="file" name="file">
 
 					<div>
 						<input type="submit" class="btn btn-sm btn-primary" id="btnSave"
@@ -137,7 +124,9 @@
 				</form>
 			</div>
 		</section>
-		<br><br><br>
+		<br>
+		<br>
+		<br>
 		<footer class="footer text-center py-2 theme-bg-dark">
 			<small class="copyright">Designed with <i
 				class="fas fa-heart" style="color: #fb866a;"></i> by <a

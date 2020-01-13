@@ -29,7 +29,7 @@
 <body>
 	<header class="header text-center">
 		<h1 class="blog-name pt-lg-4 mb-0">
-			<a href="/">YG1110 BLOG</a>
+			<a href="/">YG1110 Blog</a>
 		</h1>
 
 		<nav class="navbar navbar-expand-lg navbar-dark">
@@ -153,7 +153,7 @@
 								</a>
 								<button onclick="deleteboard(${b.id})"
 									style="border: none; background-color: white;">
-									<img alt="X" src="http://kmemorial.org/images/button/close.png"
+									<img alt="X" src="../image/close.png"
 										height="20" width="20">
 								</button>
 							</div>

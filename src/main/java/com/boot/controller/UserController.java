@@ -55,13 +55,12 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcome(Model model, HttpSession httpSession, @PageableDefault(sort = { "id" }, direction = Direction.DESC, size = 4) Pageable page) {
 		if (httpSession.getAttribute("login") != null) {
-//			System.out.println(httpSession.getAttribute("login"));
 			model.addAttribute("board", boardRepository.findAll(page));
 			User user = new User();
 			user.setUsername(httpSession.getAttribute("login").toString());
 			model.addAttribute("user", userService.findUser(user));
 
-			return "blog/blog-list";
+			return "redirect:/list";
 		} else {
 			return "blog/login";
 		}

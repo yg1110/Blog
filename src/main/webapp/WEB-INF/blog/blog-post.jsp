@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 
 <!DOCTYPE html>
 <html>
@@ -99,6 +101,11 @@
 				</header>
 
 				<div class="blog-post-body">
+				<form action="/download">
+					<sec:csrfInput />
+					<input type="hidden" name="filename" value="${board.filename}">
+					<p style="text-align: right;">첨부파일 : <a></a><input type="submit" style="border: none; background-color: white;" value="${board.filename}"></p>
+				</form>
 					<p>${board.content}</p>
 
 					<script id="cosmosfarm-comments-script" type="text/javascript"
@@ -108,14 +115,9 @@
 						data-width="790" data-row="10">
 						<a href="http://www.cosmosfarm.com/plugin/comments">코스모스팜 소셜댓글</a>
 					</div>
+				</div>
 			</div>
 		</article>
-
-		<footer class="footer text-center py-2 theme-bg-dark">
-			<small class="copyright"> Designed with <i class="fas fa-heart" style="color: #fb866a;"></i>
-				by <a href="http://themes.3rdwavemedia.com" target="_blank">YG1110</a> for developers
-			</small>
-		</footer>
 	</div>
 
 	<div id="config-panel" class="config-panel d-none d-lg-block">
@@ -164,7 +166,11 @@
 	<!-- Style Switcher (REMOVE ON YOUR PRODUCTION SITE) -->
 	<script src="../assets/js/demo/style-switcher.js"></script>
 
-
+	<script>
+		function filesubmit(){
+			
+		}
+	</script>
 </body>
 </html>
 

@@ -1,6 +1,10 @@
 package com.boot.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -11,12 +15,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.boot.Repository.BoardRepository;
 import com.boot.dto.Board;
+import com.boot.dto.FileValidator;
+import com.boot.dto.UploadFile;
 import com.boot.dto.User;
 import com.boot.service.IUserService;
 
@@ -30,9 +39,12 @@ public class BoardController {
 
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+    private FileValidator fileValidator;
 
 	@RequestMapping(value = "/addBoard.do", method = RequestMethod.POST)
-	public String fileup(Board board, HttpSession session)
+	public String fileup(Model model, Board board, HttpSession session, @ModelAttribute("uploadFile") UploadFile uploadFile, BindingResult result)
 			throws IOException {
 		log.info("Board : '" + board.toString() + "'");
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -90,6 +102,46 @@ public class BoardController {
 			board.setId(size);
 		}
 		
+		
+		InputStream inputStream = null;
+        OutputStream outputStream = null;
+        
+        // 에러 검사 : 업로드 파일 유무
+        MultipartFile file = uploadFile.getFile();
+        fileValidator.validate(uploadFile, result);
+        
+        String fileName = file.getOriginalFilename();
+        if(result.hasErrors()) {
+            //업로드할 파일을 선택하지 않은 경우 form에 에러 메세지를 출력함
+            return "blog/blog-write";
+        }
+        
+        try {
+            inputStream = file.getInputStream();
+            
+            File newFile = new File("/Users/jeong-yeong-gil/Documents/stswork/Blog/src/main/resources/static/image/" + fileName);
+            if(newFile.exists()) {
+                newFile.createNewFile();
+            }
+            outputStream = new FileOutputStream(newFile);
+            int read = 0;
+            byte[] bytes = new byte[1024];
+            
+            while((read = inputStream.read(bytes)) != -1) {
+                outputStream.write(bytes,0,read);
+            }
+            
+        } catch (Exception e) {
+            System.out.println("err : " + e);
+        }finally {
+            try {
+                inputStream.close();
+                outputStream.close();
+            } catch (Exception e2) {
+            }
+        }
+		
+        board.setFilename(fileName);
 		boardRepository.save(board);
 		return "redirect:/";
 	}
