@@ -10823,41 +10823,6 @@ body {
 	margin-right: 5px
 }
 
-.config-panel #color-options li.active a {
-	border: 2px solid #fff
-}
-
-.config-panel #color-options li.theme-1 a {
-	background: #5FCB71
-}
-
-.config-panel #color-options li.theme-2 a {
-	background-color: #5BC3D5
-}
-
-.config-panel #color-options li.theme-3 a {
-	background-color: #3B7EEB
-}
-
-.config-panel #color-options li.theme-4 a {
-	background-color: #5ECCA9
-}
-
-.config-panel #color-options li.theme-5 a {
-	background-color: #EEA73B
-}
-
-.config-panel #color-options li.theme-6 a {
-	background-color: #5469C9
-}
-
-.config-panel #color-options li.theme-7 a {
-	background-color: #5D6BA7
-}
-
-.config-panel #color-options li.theme-8 a {
-	background-color: #6C51A4
-}
 
 .config-panel .close {
 	position: absolute;
@@ -10869,8 +10834,3 @@ body {
 .config-panel .close .fa {
 	color: #fff
 }
-
-/* .container-fluid {
-	position : fixed;
-	background: white;
-} */

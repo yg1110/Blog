@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yg1110.blog">
+	<select id="getUserList" resultType="com.boot.dto.User">
+		SELECT * FROM USER
+	</select>
+
+	<select id="findUser" parameterType="com.boot.dto.User" resultType="com.boot.dto.User">
+		SELECT * FROM USER WHERE USERNAME = #{username};
+	</select>
+	
+	<insert id="insertUser" parameterType="com.boot.dto.User">
+		INSERT INTO USER(ID, ENABLED, PASSWORD, USERNAME, INTRODUCTION, IMAGE, NAME, PASSWORDQ, PASSWORDA) VALUES(#{id}, 1, #{password}, #{username}, #{introduction}, #{image}, #{name}, #{passwordQ}, #{passwordA})
+	</insert>
+	
+	<insert id="insertAuth" parameterType="com.boot.dto.Auth">
+		INSERT INTO AUTHORITIES_USERS(USUARIO_ID, AUTHORITY_ID) VALUES(#{usuario_id},#{authority_id})
+	</insert>
+	
+	<update id="updateUser" parameterType="com.boot.dto.User">
+		UPDATE user SET introduction = #{introduction}, image = #{image} WHERE id = #{id}
+	</update>
+	
+	<select id="findpassword" parameterType="com.boot.dto.User" resultType="com.boot.dto.User">
+		SELECT * FROM USER WHERE USERNAME = #{username} AND passwordQ = #{passwordQ} AND passwordA = #{passwordA}
+	</select>
+	<update id="updatepassword" parameterType="com.boot.dto.User">
+		UPDATE user SET password = #{password} where id = #{id}
+	</update>
+	
+</mapper>

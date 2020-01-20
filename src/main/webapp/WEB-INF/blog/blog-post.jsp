@@ -104,7 +104,7 @@
 				<form action="/download">
 					<sec:csrfInput />
 					<input type="hidden" name="filename" value="${board.filename}">
-					<p style="text-align: right;">첨부파일 : <a></a><input type="submit" style="border: none; background-color: white;" value="${board.filename}"></p>
+					<p style="text-align: right;">첨부파일 : <input type="submit" style="border: none; background-color: white; color:#5FCB71"value="${board.filename}"></p>
 				</form>
 					<p>${board.content}</p>
 
